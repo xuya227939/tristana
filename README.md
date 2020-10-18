@@ -1,26 +1,26 @@
-# Tristana（Hooks版）
+# Tristana（Hooks）
 
-基于 [React](https://github.com/facebook/react)、[Mobx](https://github.com/mobxjs/mobx)、[Webpack](https://github.com/webpack/webpack) 和 [React-Router](https://github.com/ReactTraining/react-router) 的项目模板。
+Lightweight front-end template based on [React](https://github.com/facebook/react)、[Mobx](https://github.com/mobxjs/mobx)、[Webpack](https://github.com/webpack/webpack) 和 [React-Router](https://github.com/ReactTraining/react-router)
 
 ---
 
-## 特性
-* **快速上手**，只要会React、Mobx、Webpack、React-Router，快速搭建中后台管理平台。
-* **路由匹配**，包含URL输入、JS跳转、菜单切换。
-* **封装组件Loading**，不需要重复写组件Loading判断。
+## Features
+* **Get started quickly**，As long as you know react, mobx, webpack and react router, you can quickly build the management platform of the middle and back office。
+* **Route matching**，Including URL input, JS jump, menu switch。
+* **Loading**，Do not need to write component load judgment repeatedly。
 
-## 官网效果演示
+## Demo
 * [Tristana](https://order.downfuture.com/)
 
-### 是否可用于生产环境？
-当然！公司内用于生产环境的项目估计已经有 5+ 。
+### Can it be used in production environment?
+Of Course! It is estimated that there are 5 + projects in the company for production environment.
 
-### 是否支持 IE8 ？
-不支持。
+### Is IE8 supported?
+Not Supported.
 
-## 启动
+## Get started
 ```
-$ git clone https://github.com/Cherry-Team/tristana.git
+$ git clone https://github.com/xuya227939/tristana.git
 
 $ cd tristana
 
@@ -29,7 +29,7 @@ $ npm install
 $ npm start
 ```
 
-## 部署
+## Deploy
 ```
 $ npm run build:prod
 ```
