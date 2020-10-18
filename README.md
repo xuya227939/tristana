@@ -10,7 +10,7 @@ Lightweight front-end template based on [React](https://github.com/facebook/reac
 * **Loading**，Do not need to write component load judgment repeatedly。
 
 ## Demo
-* [Tristana](https://order.downfuture.com/)
+[Tristana](https://order.downfuture.com/)
 
 ### Can it be used in production environment?
 Of Course! It is estimated that there are 5 + projects in the company for production environment.
