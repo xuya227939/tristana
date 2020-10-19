@@ -24,6 +24,8 @@ $ git clone https://github.com/xuya227939/tristana.git
 
 $ cd tristana
 
+$ git checkout js
+
 $ npm install
 
 $ npm start
