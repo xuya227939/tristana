@@ -5,16 +5,14 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin');
-const {
-    CleanWebpackPlugin
-} = require('clean-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
-    .BundleAnalyzerPlugin;
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 
 module.exports = {
     stats: {
@@ -59,18 +57,21 @@ module.exports = {
         }
     },
     module: {
-        rules: [{
+        rules: [
+            {
                 test: /\.(tsx|ts)?$/,
                 exclude: /node_modules/,
                 loader: 'awesome-typescript-loader',
                 options: {
                     getCustomTransformers: () => ({
                         before: [
-                            tsImportPluginFactory([{
-                                libraryName: 'antd',
-                                libraryDirectory: 'lib',
-                                style: 'css'
-                            }])
+                            tsImportPluginFactory([
+                                {
+                                    libraryName: 'antd',
+                                    libraryDirectory: 'lib',
+                                    style: 'css'
+                                }
+                            ])
                         ]
                     })
                 }
@@ -94,17 +95,18 @@ module.exports = {
                 options: {
                     plugins: [
                         process.env.ENV_LWD == 'development' &&
-                        require.resolve('react-refresh/babel')
+                            require.resolve('react-refresh/babel')
                     ].filter(Boolean)
                 }
             },
             {
                 test: /\.(css|less)$/,
                 use: [
-                    process.env.ENV_LWD == 'development' ? {
-                        loader: 'style-loader'
-                    } :
-                    MiniCssExtractPlugin.loader,
+                    process.env.ENV_LWD == 'development'
+                        ? {
+                              loader: 'style-loader'
+                          }
+                        : MiniCssExtractPlugin.loader,
                     {
                         loader: 'css-loader',
                         options: {
@@ -157,10 +159,10 @@ module.exports = {
         cleanWebpack: new CleanWebpackPlugin(),
         // 抽取css
         miniCssExtract: new MiniCssExtractPlugin({
-            filename: process.env.ENV_LWD == 'development' ?
-                './css/[id].css' : './css/[id].[hash].css',
-            chunkFilename: process.env.ENV_LWD == 'development' ?
-                './css/[id].css' : './css/[id].[hash].css',
+            filename:
+                process.env.ENV_LWD == 'development' ? './css/[id].css' : './css/[id].[hash].css',
+            chunkFilename:
+                process.env.ENV_LWD == 'development' ? './css/[id].css' : './css/[id].[hash].css',
             ignoreOrder: true
         }),
         namedModules: new webpack.NamedModulesPlugin(),
@@ -173,10 +175,7 @@ module.exports = {
         // 打包进度
         progressBarPlugin: new ProgressBarPlugin(),
         // 加载中文包
-        ContextReplacementPlugin: new webpack.ContextReplacementPlugin(
-            /moment\/locale$/,
-            /zh-cn/
-        ),
+        ContextReplacementPlugin: new webpack.ContextReplacementPlugin(/moment\/locale$/, /zh-cn/),
         CompressionPlugin: new CompressionPlugin({
             filename: '[path].gz[query]',
             algorithm: 'gzip',
@@ -189,13 +188,16 @@ module.exports = {
         DefinePlugin: new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify(process.env.ENV_LWD)
         }),
-        CopyPlugin: new CopyPlugin([{
-            from: './src/assets/js',
-            to: '../dist/assets/js',
-            toType: 'dir'
-        }]),
+        CopyPlugin: new CopyPlugin([
+            {
+                from: './src/assets/js',
+                to: '../dist/assets/js',
+                toType: 'dir'
+            }
+        ]),
         HotModuleReplacementPlugin: new webpack.HotModuleReplacementPlugin(),
-        ReactRefreshWebpackPlugin: new ReactRefreshWebpackPlugin()
+        ReactRefreshWebpackPlugin: new ReactRefreshWebpackPlugin(),
+        HardSourceWebpackPlugin: new HardSourceWebpackPlugin()
     },
     devServer: {
         contentBase: path.resolve(__dirname, 'dist'),
