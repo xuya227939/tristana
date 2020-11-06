@@ -1,0 +1,20 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "@mobx": ["./src/mobx/"],
+            "@src": ["./src/"],
+            "@components": ["./src/components/"],
+            "@assets": ["./src/assets/"],
+            "@locales": ["./src/locales/"],
+            "@utils": ["./src/utils/"],
+            "@servers": ["./src/servers/"],
+            "@pages": ["./src/pages/"],
+            "@request": ["./src/request.js"],
+            "@config": ["./src/config.js"],
+            "@routeConfig": ["./src/routeConfig.jsx"],
+            "@mock": ["./src/mock/"]
+        }
+    },
+    "exclude": ["node_modules", "dist", ".history"]
+}
