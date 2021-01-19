@@ -9,6 +9,7 @@ module.exports = {
     stats: webpackBase.stats,
     optimization: webpackBase.optimization,
     plugins: [
+        webpackBase.plugins.cleanWebpack,
         webpackBase.plugins.html,
         webpackBase.plugins.miniCssExtract,
         webpackBase.plugins.optimizeCssAssets,

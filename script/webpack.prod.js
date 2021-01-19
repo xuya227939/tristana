@@ -1,11 +1,12 @@
-const path = require('path');
 const webpackBase = require('./webpack.base.conf');
-const SpeedMeasureWebpackPlugin = require('speed-measure-webpack-plugin');
-const smp = new SpeedMeasureWebpackPlugin();
 
 const config = {
     // 配置源码显示方式
     mode: 'production',
+    output: {
+        filename: './js/[name].[hash].js',
+        hashDigestLength: 7
+    },
     resolve: webpackBase.resolve,
     module: webpackBase.module,
     stats: webpackBase.stats,
@@ -24,4 +25,4 @@ const config = {
     // externals: webpackBase.externals
 };
 
-module.exports = smp.wrap(config);
+module.exports = config;
