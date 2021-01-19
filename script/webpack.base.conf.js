@@ -11,7 +11,6 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
-const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 
 module.exports = {
@@ -91,13 +90,7 @@ module.exports = {
                 test: /\.(js|jsx)$/,
                 // loader: 'babel-loader',
                 exclude: /node_modules/,
-                loader: require.resolve('babel-loader'),
-                options: {
-                    plugins: [
-                        process.env.ENV_LWD == 'development' &&
-                            require.resolve('react-refresh/babel')
-                    ].filter(Boolean)
-                }
+                loader: require.resolve('babel-loader')
             },
             {
                 test: /\.(css|less)$/,
@@ -196,7 +189,6 @@ module.exports = {
             }
         ]),
         HotModuleReplacementPlugin: new webpack.HotModuleReplacementPlugin(),
-        ReactRefreshWebpackPlugin: new ReactRefreshWebpackPlugin(),
         HardSourceWebpackPlugin: new HardSourceWebpackPlugin()
     },
     devServer: {
