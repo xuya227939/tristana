@@ -4,9 +4,6 @@ module.exports = {
     // 配置源码显示方式
     devtool: 'eval-source-map',
     mode: 'development',
-    entry: {
-        app: ['./src/index.tsx']
-    },
     resolve: webpackBase.resolve,
     module: webpackBase.module,
     stats: webpackBase.stats,
@@ -18,7 +15,6 @@ module.exports = {
         webpackBase.plugins.ContextReplacementPlugin,
         webpackBase.plugins.DefinePlugin,
         webpackBase.plugins.AntdDayjsWebpackPlugin,
-        webpackBase.plugins.HardSourceWebpackPlugin,
         webpackBase.plugins.HotModuleReplacementPlugin
     ],
     devServer: webpackBase.devServer,

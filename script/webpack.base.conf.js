@@ -11,7 +11,6 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
-const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 
 module.exports = {
     stats: {
@@ -28,18 +27,7 @@ module.exports = {
                 cache: true
             })
         ],
-        splitChunks: {
-            cacheGroups: {
-                vendors: {
-                    //node_modules里的代码
-                    test: /[\\/]node_modules[\\/]/,
-                    chunks: 'initial',
-                    name: 'vendors', //chunks name
-                    priority: 10, //优先级
-                    enforce: true
-                }
-            }
-        }
+        splitChunks: { chunks: 'all' }
     },
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.jsx', '.css', '.less', '.json'],
@@ -158,7 +146,6 @@ module.exports = {
                 process.env.ENV_LWD == 'development' ? './css/[id].css' : './css/[id].[hash].css',
             ignoreOrder: true
         }),
-        namedModules: new webpack.NamedModulesPlugin(),
         // 压缩css
         optimizeCssAssets: new OptimizeCssAssetsPlugin(),
         // 生成包依赖图
@@ -188,8 +175,7 @@ module.exports = {
                 toType: 'dir'
             }
         ]),
-        HotModuleReplacementPlugin: new webpack.HotModuleReplacementPlugin(),
-        HardSourceWebpackPlugin: new HardSourceWebpackPlugin()
+        HotModuleReplacementPlugin: new webpack.HotModuleReplacementPlugin()
     },
     devServer: {
         contentBase: path.resolve(__dirname, 'dist'),
