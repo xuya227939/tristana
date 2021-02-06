@@ -5,7 +5,9 @@ const config = {
     mode: 'production',
     output: {
         filename: './js/[name].[hash].js',
-        hashDigestLength: 7
+        hashDigestLength: 7,
+        path: path.resolve('./', 'dist'),
+        publicPath: './'
     },
     resolve: webpackBase.resolve,
     module: webpackBase.module,
