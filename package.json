@@ -90,7 +90,7 @@
     },
     "scripts": {
         "start": "cross-env ENV_LWD=development webpack serve  --mode=development --config script/webpack.dev.js",
-        "build:test": "cross-env ENV_LWD=test webpack  --config script/webpack.prod.js",
+        "build:test": "cross-env ENV_LWD=test webpack  --mode=development --config script/webpack.prod.js",
         "build:prod": "cross-env ENV_LWD=production webpack --mode=production --config script/webpack.prod.js",
         "watch": "webpack --watch --config script/webpack.dev.js",
         "script-name": "babel-node script.js",

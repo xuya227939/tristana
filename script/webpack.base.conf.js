@@ -17,6 +17,15 @@ module.exports = {
         entrypoints: false,
         children: false
     },
+    cache: {
+        type: 'filesystem',
+        // 可选配置
+        buildDependencies: {
+            // eslint-disable-next-line no-undef
+            config: [__filename] // 当构建依赖的config文件（通过 require 依赖）内容发生变化时，缓存失效
+        },
+        name: ''
+    },
     optimization: {
         // minimizer: [
         //     // 压缩js
@@ -103,11 +112,10 @@ module.exports = {
             },
             {
                 test: /\.(png|svg|jpg|gif|jpeg)$/,
-                loader: 'file-loader',
-                options: {
-                    outputPath: './assets/images',
-                    publicPath: '../assets/images/',
-                    esModule: false
+                type: 'asset/resource',
+                generator: {
+                    // [ext]前面自带"."
+                    filename: 'assets/images/[hash:8].[name][ext]'
                 }
             },
             {
