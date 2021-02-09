@@ -15,57 +15,24 @@
         "moduleResolution": "node",
         "isolatedModules": true,
         "importHelpers": true,
-        "lib": [
-            "esnext",
-            "dom",
-            "dom.iterable"
-        ],
-        "skipLibCheck": false,
+        "lib": ["esnext", "dom", "dom.iterable"],
+        "skipLibCheck": true,
         "jsx": "react",
-        "typeRoots": [
-            "node",
-            "node_modules/@types",
-            "./typings"
-        ],
-        "rootDirs": [
-            "./src"
-        ],
+        "typeRoots": ["node", "node_modules/@types", "./typings"],
+        "rootDirs": ["./src"],
         "baseUrl": "./src",
         "paths": {
-            "@src/*": [
-                "*"
-            ],
-            "@assets/*": [
-                "assets/*"
-            ],
-            "@components/*": [
-                "components/*"
-            ],
-            "@locales/*": [
-                "locales/*"
-            ],
-            "@mock/*": [
-                "mock/*"
-            ],
-            "@pages/*": [
-                "pages/*"
-            ],
-            "@mobx/*": [
-                "mobx/*"
-            ],
-            "@utils/*": [
-                "utils/*"
-            ],
-            "@servers/*": [
-                "servers/*"
-            ]
+            "@src/*": ["*"],
+            "@assets/*": ["assets/*"],
+            "@components/*": ["components/*"],
+            "@locales/*": ["locales/*"],
+            "@mock/*": ["mock/*"],
+            "@pages/*": ["pages/*"],
+            "@mobx/*": ["mobx/*"],
+            "@utils/*": ["utils/*"],
+            "@servers/*": ["servers/*"]
         }
     },
-    "include": [
-        "./src/**/*",
-        "./declaration.d.ts"
-    ],
-    "exclude": [
-        "node_modules"
-    ]
+    "include": ["./src/**/*", "./declaration.d.ts"],
+    "exclude": ["node_modules"]
 }
