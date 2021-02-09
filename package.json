@@ -107,11 +107,11 @@
         "precommit-msg"
     ],
     "lint-staged": {
-        "src/*.{js,jsx,ts,tsx}": [
+        "*.{js,jsx,ts,tsx}": [
             "eslint --fix",
             "git add"
         ],
-        "src/*.{css,less}": [
+        "*.{css,less}": [
             "stylelint",
             "git add"
         ]

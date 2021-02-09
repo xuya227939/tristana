@@ -101,7 +101,23 @@ class TrtcRoom extends React.Component<IProps, IState> {
     }
 
     async componentDidUpdate() {
-        const { videoStore: { videoInfo: { sdkAppId, agnetSig, roomId, agent, shareUserId, shareUserSig, customerCode }, videoInfo, isCallOn, requestId }, videoStore } = this.props;
+        const {
+            videoStore: {
+                videoInfo: {
+                    sdkAppId,
+                    agnetSig,
+                    roomId,
+                    agent,
+                    shareUserId,
+                    shareUserSig,
+                    customerCode
+                },
+                videoInfo,
+                isCallOn,
+                requestId
+            },
+            videoStore
+        } = this.props;
         // 如果有视频信息并接听
         if (!isEmpty(videoInfo) && isCallOn) {
             videoStore.isCallOn = false;
@@ -150,7 +166,7 @@ class TrtcRoom extends React.Component<IProps, IState> {
     }
 
     // 图片按下事件
-    handlerDown = (e) => {
+    handlerDown = e => {
         e.preventDefault();
         const modal: any = document.getElementById('modal-container');
         this.isDown = true;
@@ -165,14 +181,14 @@ class TrtcRoom extends React.Component<IProps, IState> {
             document.onmouseup = null;
             this.isDown = false;
         };
-    }
+    };
 
     // 图片移动
     handlerMove = () => {
-        document.onmousemove = (e) => {
+        document.onmousemove = e => {
             if (this.isDown) {
-                const left = (e.clientX - this.currentX) + this.offsetLeft + 'px';
-                const top = (e.clientY - this.currentY) + this.offsetTop + 'px';
+                const left = e.clientX - this.currentX + this.offsetLeft + 'px';
+                const top = e.clientY - this.currentY + this.offsetTop + 'px';
                 const style = {
                     left,
                     top
@@ -182,7 +198,7 @@ class TrtcRoom extends React.Component<IProps, IState> {
                 });
             }
         };
-    }
+    };
 
     // 加入或创建房间 在得到初始化的 WebRTCAPI 对象实例 RTC 后，调用对象实例的 enterRoom() 方法，即可进入房间（如果 roomid 不存在则为创建房间）
     enterRomm() {
@@ -193,7 +209,7 @@ class TrtcRoom extends React.Component<IProps, IState> {
                     logger('error', 'enterRomm error：' + err);
                     reject(err);
                 })
-                .then((res) => {
+                .then(res => {
                     logger('log', 'enterRomm success：' + res);
                     resolve(res);
                 });
@@ -215,7 +231,7 @@ class TrtcRoom extends React.Component<IProps, IState> {
                     logger('error', 'startRTC error：' + JSON.stringify(err));
                     reject(err);
                 })
-                .then((res) => {
+                .then(res => {
                     logger('log', 'startRTC success：' + JSON.stringify(res));
                     this.localStream.play('localVideo');
                     resolve(res);
@@ -236,36 +252,42 @@ class TrtcRoom extends React.Component<IProps, IState> {
     }
     // 开始屏幕分享， 创建分享流，并且 publish 到远端
     startScreenSharing(fn: any) {
-        return new Promise((resolve, reject) => {
+        return new Promise<void>((resolve, reject) => {
             if (!this.shareClient) {
                 this.createShareClient();
             }
 
-            this.shareClient.join({ roomId: this.roomid }).then(() => {
-                this.startStream = TRTC.createStream({ audio: false, screen: true });
-                this.startStream.initialize().then(() => {
-                    this.shareClient.publish(this.startStream).then(() => {
-                        resolve();
-                    }).catch((err) => {
-                        this.shareClient.leave();
-                        fn();
-                        reject(err);
+            this.shareClient
+                .join({ roomId: this.roomid })
+                .then(() => {
+                    this.startStream = TRTC.createStream({ audio: false, screen: true });
+                    this.startStream
+                        .initialize()
+                        .then(() => {
+                            this.shareClient
+                                .publish(this.startStream)
+                                .then(() => {
+                                    resolve();
+                                })
+                                .catch(err => {
+                                    this.shareClient.leave();
+                                    fn();
+                                    reject(err);
+                                });
+                        })
+                        .catch(err => {
+                            this.shareClient.leave();
+                            fn();
+                            reject(err);
+                        });
 
+                    this.startStream.on('screen-sharing-stopped', () => {
+                        this.closeScreenSharing();
                     });
-                }).catch((err) => {
-                    this.shareClient.leave();
-                    fn();
+                })
+                .catch(err => {
                     reject(err);
                 });
-
-                this.startStream.on('screen-sharing-stopped', () => {
-                    this.closeScreenSharing();
-
-                });
-            }).catch((err) => {
-                reject(err);
-            });
-
         });
     }
 
@@ -276,7 +298,6 @@ class TrtcRoom extends React.Component<IProps, IState> {
             this.startStream.close();
             this.shareClient.leave();
         });
-
     }
 
     // 发布本地音视频流
@@ -289,7 +310,7 @@ class TrtcRoom extends React.Component<IProps, IState> {
                     logger('error', 'publish success：' + JSON.stringify(err));
                     reject(err);
                 })
-                .then((res) => {
+                .then(res => {
                     this.getLocalVideoStats();
                     this.getRemoteVideoStats();
                     onEvent('sendStartScreenCapToBackground');
@@ -314,7 +335,7 @@ class TrtcRoom extends React.Component<IProps, IState> {
                 }
             });
         }, 5000);
-    }
+    };
 
     // 收听远端视频流
     onRemoteStreamUpdate() {
@@ -337,7 +358,10 @@ class TrtcRoom extends React.Component<IProps, IState> {
             this.startStreamFun();
             if (!document.querySelector(`#remoteStream-${this.id}`)) {
                 const div = document.createElement('div');
-                div.setAttribute('style', 'position: absolute; right: 0; left: 0; top: 0; width: 100%; height: 100%;');
+                div.setAttribute(
+                    'style',
+                    'position: absolute; right: 0; left: 0; top: 0; width: 100%; height: 100%;'
+                );
                 div.setAttribute('id', `remoteStream-${this.id}`);
                 remoteVideoDom.appendChild(div);
             }
@@ -430,7 +454,8 @@ class TrtcRoom extends React.Component<IProps, IState> {
                 const wifi2 = [1, 2];
                 const wifi3 = [1, 2, 3];
                 for (let customerCode in stats) {
-                    const bytesReceived = (stats[this.customerCode].bytesReceived - this.bytesReceived) / 3000;
+                    const bytesReceived =
+                        (stats[this.customerCode].bytesReceived - this.bytesReceived) / 3000;
                     if (this.customerCode == customerCode) {
                         this.bytesReceived = stats[customerCode].bytesReceived;
                     }
@@ -444,7 +469,11 @@ class TrtcRoom extends React.Component<IProps, IState> {
                         return;
                     }
 
-                    if (this.customerCode == customerCode && bytesReceived >= 30 && bytesReceived <= 69) {
+                    if (
+                        this.customerCode == customerCode &&
+                        bytesReceived >= 30 &&
+                        bytesReceived <= 69
+                    ) {
                         // 3档，通话质量一般
                         for (let i = 0; i < wifi3.length; i++) {
                             const wifi: any = document.querySelector(`.wifi-${wifi3[i]}`);
@@ -456,7 +485,11 @@ class TrtcRoom extends React.Component<IProps, IState> {
                         return;
                     }
 
-                    if (this.customerCode == customerCode && bytesReceived > 0 && bytesReceived <= 29) {
+                    if (
+                        this.customerCode == customerCode &&
+                        bytesReceived > 0 &&
+                        bytesReceived <= 29
+                    ) {
                         // 2档，通话质量差
                         for (let i = 0; i < wifi2.length; i++) {
                             const wifi: any = document.querySelector(`.wifi-${wifi2[i]}`);
@@ -526,11 +559,12 @@ class TrtcRoom extends React.Component<IProps, IState> {
     // 取消发布本地流
     unpublish() {
         if (!this.localStream) return;
-        this.client.unpublish(this.localStream)
-            .catch((err) => {
+        this.client
+            .unpublish(this.localStream)
+            .catch(err => {
                 logger('error', 'unpublish error：' + JSON.stringify(err));
             })
-            .then((res) => {
+            .then(res => {
                 // 取消发布本地流成功
                 logger('error', 'unpublish success：' + JSON.stringify(res));
             });
@@ -567,26 +601,43 @@ class TrtcRoom extends React.Component<IProps, IState> {
 
     render() {
         const { imgStyle, talkTime } = this.state;
-        const { videoStore: { customerInfo, insurantName, isVideo, isAudio, isShowModal, isShowWaiting, countDown }, videoStore } = this.props;
+        const {
+            videoStore: {
+                customerInfo,
+                insurantName,
+                isVideo,
+                isAudio,
+                isShowModal,
+                isShowWaiting,
+                countDown
+            },
+            videoStore
+        } = this.props;
         return (
             <section>
                 {
                     <div
                         id="modal-container"
-                        className={localStorage.isFirstVideo == 'true' ? 'modal-container-hidden' : (isShowModal ? 'modal-container modal-container-fadein' : 'modal-container modal-container-fadeout')}
+                        className={
+                            localStorage.isFirstVideo == 'true'
+                                ? 'modal-container-hidden'
+                                : isShowModal
+                                ? 'modal-container modal-container-fadein'
+                                : 'modal-container modal-container-fadeout'
+                        }
                         draggable="true"
                         onDragStart={this.handlerDown}
                         style={imgStyle}
                     >
-                        {
-                            isShowWaiting &&
+                        {isShowWaiting && (
                             <article className="modal-waiting-frame">
-                                <img className="waiting-answer" src={require('../../assets/images/video/waiting_answer.png')} />
+                                <img
+                                    className="waiting-answer"
+                                    src={require('../../assets/images/video/waiting_answer.png')}
+                                />
                                 <p className="task-id">{insurantName}</p>
                                 <p className="task-id">{customerInfo}</p>
-                                <div className="waiting-video task-id">
-                                    等待视频接通中...
-                                </div>
+                                <div className="waiting-video task-id">等待视频接通中...</div>
                                 <Button
                                     type="primary"
                                     shape="round"
@@ -597,29 +648,21 @@ class TrtcRoom extends React.Component<IProps, IState> {
                                     ({countDown}s)接听
                                 </Button>
                             </article>
-                        }
-                        {
-                            !isShowWaiting &&
+                        )}
+                        {!isShowWaiting && (
                             <article className="modal-video-frame">
                                 <div className="video-header">
-                                    <span>
-                                        正在和{insurantName ? insurantName : '-'}通话中
-                                    </span>
-                                    <span>
-                                        通话时长：{formatSeconds(talkTime)}
-                                    </span>
+                                    <span>正在和{insurantName ? insurantName : '-'}通话中</span>
+                                    <span>通话时长：{formatSeconds(talkTime)}</span>
                                 </div>
                                 <div id="localVideo" className="local-video" />
                                 <div id="remoteVideo" />
                                 <div id="video-loading" className="video-loading">
                                     <Spin />
-                                    <span>
-                                        视频正在建立中，请稍等
-                                    </span>
+                                    <span>视频正在建立中，请稍等</span>
                                 </div>
                                 <div className="wifi">
-                                    <div className="wifi-mask">
-                                    </div>
+                                    <div className="wifi-mask"></div>
                                     <span className="wifi-icon strength-ready">
                                         <div className="wifi-background">
                                             <span className="wifi-1"></span>
@@ -633,12 +676,20 @@ class TrtcRoom extends React.Component<IProps, IState> {
                                 <div className="footer-btn">
                                     <img
                                         className="img"
-                                        src={isAudio ? require('../../assets/images/video/voice.png') : require('../../assets/images/video/voice2.png')}
+                                        src={
+                                            isAudio
+                                                ? require('../../assets/images/video/voice.png')
+                                                : require('../../assets/images/video/voice2.png')
+                                        }
                                         onClick={() => this.props.onEvent('isAudio')}
                                     />
                                     <img
                                         className="img"
-                                        src={isVideo ? require('../../assets/images/video/video.png') : require('../../assets/images/video/video2.png')}
+                                        src={
+                                            isVideo
+                                                ? require('../../assets/images/video/video.png')
+                                                : require('../../assets/images/video/video2.png')
+                                        }
                                         onClick={() => this.props.onEvent('isVideo')}
                                     />
                                     <img
@@ -669,18 +720,14 @@ class TrtcRoom extends React.Component<IProps, IState> {
                                     </Popconfirm>
                                 </div>
                             </article>
-                        }
+                        )}
                     </div>
                 }
-                {
-                    isShowModal && isShowWaiting &&
-                    <audio
-                        autoPlay
-                        loop
-                    >
+                {isShowModal && isShowWaiting && (
+                    <audio autoPlay loop>
                         <source src={require('../../assets/audio/videoRequest.mp3')} />
                     </audio>
-                }
+                )}
             </section>
         );
     }
