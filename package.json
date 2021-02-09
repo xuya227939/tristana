@@ -64,6 +64,7 @@
         "optimize-css-assets-webpack-plugin": "^5.0.1",
         "postcss-loader": "^3.0.0",
         "pre-commit": "^1.2.2",
+        "prettier": "^2.2.1",
         "progress-bar-webpack-plugin": "^1.12.1",
         "prop-types": "^15.7.2",
         "react": "^17.0.0",
@@ -104,12 +105,14 @@
         "precommit-msg"
     ],
     "lint-staged": {
-        "src/*.{js,jsx,ts,tsx}": [
+        "*.{js,jsx,ts,tsx}": [
             "eslint --fix",
+            "prettier --write",
             "git add"
         ],
-        "src/*.{css,less}": [
-            "stylelint",
+        "*.{css,less}": [
+            "stylelint --fix",
+            "prettier --write",
             "git add"
         ]
     }
