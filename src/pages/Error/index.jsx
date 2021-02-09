@@ -4,16 +4,10 @@ class Index extends Component {
         super(props);
     }
 
-    componentDidMount() {
-        
-    }
+    componentDidMount() {}
 
     render() {
-        return (
-            <>
-
-            </> 
-        );
+        return <></>;
     }
 }
 

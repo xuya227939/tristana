@@ -3,7 +3,7 @@
  * @Author: Jiang
  * @Date: 2019-06-12 15:21:19
  * @Last Modified by: Jiang
- * @Last Modified time: 2020-07-29 21:04:22
+ * @Last Modified time: 2021-02-09 11:50:28
  */
 import React from 'react';
 import { Result, Button } from 'antd';
@@ -14,7 +14,7 @@ class ErrorBoundary extends React.Component {
         super(props);
         this.state = { hasError: false, info: '', eventId: '' };
     }
-  
+
     static getDerivedStateFromError() {
         // 更新 state 使下一次渲染可以显示降级 UI
         return { hasError: true };
@@ -25,7 +25,7 @@ class ErrorBoundary extends React.Component {
             info: error + ''
         });
         const userId = Math.random().toString(36).substr(2, 9);
-        Sentry.withScope((scope) => {
+        Sentry.withScope(scope => {
             scope.setExtras(info.componentStack);
             scope.setUser({
                 id: userId,
@@ -34,10 +34,10 @@ class ErrorBoundary extends React.Component {
                 email: ''
             });
             const eventId = Sentry.captureException(error);
-            this.setState({ eventId });   
+            this.setState({ eventId });
         });
     }
-  
+
     render() {
         if (this.state.hasError) {
             // 你可以渲染任何自定义的降级 UI
@@ -46,12 +46,19 @@ class ErrorBoundary extends React.Component {
                     status="500"
                     title="500"
                     subTitle={this.state.info}
-                    extra={<Button type="primary" onClick={() => Sentry.showReportDialog({ eventId: this.state.eventId })}>Report feedback</Button>}
+                    extra={
+                        <Button
+                            type="primary"
+                            onClick={() => Sentry.showReportDialog({ eventId: this.state.eventId })}
+                        >
+                            Report feedback
+                        </Button>
+                    }
                 />
             );
         }
-  
-        return this.props.children; 
+
+        return this.props.children;
     }
 }
 
