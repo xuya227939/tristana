@@ -111,19 +111,21 @@ module.exports = {
                 ]
             },
             {
-                test: /\.(png|svg|jpg|gif|jpeg)$/,
-                type: 'asset/resource',
-                generator: {
-                    // [ext]前面自带"."
-                    filename: 'assets/images/[hash:8].[name][ext]'
+                test: /\.(png|jpg|gif|jpeg)$/,
+                loader: 'file-loader',
+                options: {
+                    outputPath: './assets/images',
+                    publicPath: '../assets/images/',
+                    esModule: false
                 }
             },
             {
-                test: /\.(woff|woff2|eot|ttf|otf|mp3)$/,
-                loader: 'file-loader',
-                options: {
-                    esModule: false
-                }
+                test: /\.(woff|woff2|eot|ttf|otf|svg)$/,
+                // loader: 'file-loader',
+                // options: {
+                //     esModule: false
+                // }
+                type: 'asset/inline'
             }
         ]
     },
@@ -148,9 +150,13 @@ module.exports = {
         // 抽取css
         miniCssExtract: new MiniCssExtractPlugin({
             filename:
-                process.env.ENV_LWD == 'development' ? './css/[id].css' : './css/[id].[hash].css',
+                process.env.ENV_LWD == 'development'
+                    ? './css/[name].css'
+                    : './css/[name].[contenthash].css',
             chunkFilename:
-                process.env.ENV_LWD == 'development' ? './css/[id].css' : './css/[id].[hash].css',
+                process.env.ENV_LWD == 'development'
+                    ? './css/[id].css'
+                    : './css/[id].[contenthash].css',
             ignoreOrder: true
         }),
         // 压缩css

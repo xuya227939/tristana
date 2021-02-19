@@ -4,7 +4,6 @@ const path = require('path');
 const config = {
     // 配置源码显示方式
     mode: 'production',
-    // cache: webpackBase.cache,
     output: {
         filename: './js/[name].[hash].js',
         hashDigestLength: 7,
