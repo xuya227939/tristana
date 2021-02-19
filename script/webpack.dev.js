@@ -7,6 +7,7 @@ module.exports = {
     resolve: webpackBase.resolve,
     module: webpackBase.module,
     stats: webpackBase.stats,
+    cache: webpackBase.cache,
     optimization: webpackBase.optimization,
     plugins: [
         webpackBase.plugins.cleanWebpack,
