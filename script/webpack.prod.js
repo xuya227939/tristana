@@ -18,7 +18,6 @@ const config = {
         webpackBase.plugins.cleanWebpack,
         webpackBase.plugins.html,
         webpackBase.plugins.miniCssExtract,
-        webpackBase.plugins.optimizeCssAssets,
         webpackBase.plugins.progressBarPlugin,
         webpackBase.plugins.ContextReplacementPlugin,
         webpackBase.plugins.DefinePlugin,

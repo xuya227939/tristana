@@ -1,14 +1,13 @@
 const webpack = require('webpack');
 const path = require('path');
-const tsImportPluginFactory = require('ts-import-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
@@ -26,6 +25,8 @@ module.exports = {
         name: ''
     },
     optimization: {
+        minimize: true,
+        minimizer: [new CssMinimizerPlugin()],
         splitChunks: { chunks: 'all' }
     },
     resolve: {
@@ -46,21 +47,8 @@ module.exports = {
         rules: [
             {
                 test: /\.(tsx|ts)?$/,
-                exclude: /node_modules/,
-                loader: 'awesome-typescript-loader',
-                options: {
-                    getCustomTransformers: () => ({
-                        before: [
-                            tsImportPluginFactory([
-                                {
-                                    libraryName: 'antd',
-                                    libraryDirectory: 'lib',
-                                    style: 'css'
-                                }
-                            ])
-                        ]
-                    })
-                }
+                loader: 'babel-loader',
+                exclude: /node_modules/
             },
             {
                 enforce: 'pre',
@@ -75,9 +63,8 @@ module.exports = {
             },
             {
                 test: /\.(js|jsx)$/,
-                // loader: 'babel-loader',
-                exclude: /node_modules/,
-                loader: require.resolve('babel-loader')
+                loader: 'babel-loader',
+                exclude: /node_modules/
             },
             {
                 test: /\.(css|less)$/,
@@ -150,8 +137,6 @@ module.exports = {
                     : './css/[id].[contenthash].css',
             ignoreOrder: true
         }),
-        // 压缩css
-        optimizeCssAssets: new OptimizeCssAssetsPlugin(),
         // 生成包依赖图
         bundleAnalyzer: new BundleAnalyzerPlugin({
             analyzerPort: 8081
@@ -163,22 +148,24 @@ module.exports = {
         CompressionPlugin: new CompressionPlugin({
             filename: '[path].gz[query]',
             algorithm: 'gzip',
-            test: /\.js$|\.css$|\.jsx$|\.less$|\.html$/,
-            threshold: 10240,
-            minRatio: 0.8
+            test: /\.ts$|\.tsx$|\.js$|\.jsx$|\.css$|\.less$|\.html$/,
+            threshold: 10240
         }),
         // 替换ant moment
         AntdDayjsWebpackPlugin: new AntdDayjsWebpackPlugin(),
         DefinePlugin: new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify(process.env.ENV_LWD)
         }),
-        CopyPlugin: new CopyPlugin([
-            {
-                from: './src/assets/js',
-                to: '../dist/assets/js',
-                toType: 'dir'
-            }
-        ]),
+        CopyPlugin: new CopyPlugin({
+            patterns: [
+                {
+                    from: './src/assets/js',
+                    to: '../dist/assets/js',
+                    toType: 'dir',
+                    noErrorOnMissing: true
+                }
+            ]
+        }),
         HotModuleReplacementPlugin: new webpack.HotModuleReplacementPlugin()
     },
     devServer: {

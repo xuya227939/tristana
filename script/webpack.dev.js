@@ -7,17 +7,17 @@ module.exports = {
     resolve: webpackBase.resolve,
     module: webpackBase.module,
     stats: webpackBase.stats,
-    cache: webpackBase.cache,
+    // cache: webpackBase.cache,
     optimization: webpackBase.optimization,
     plugins: [
         webpackBase.plugins.cleanWebpack,
         webpackBase.plugins.html,
         webpackBase.plugins.miniCssExtract,
-        webpackBase.plugins.optimizeCssAssets,
         webpackBase.plugins.ContextReplacementPlugin,
         webpackBase.plugins.DefinePlugin,
         webpackBase.plugins.AntdDayjsWebpackPlugin,
         webpackBase.plugins.HotModuleReplacementPlugin
+        // webpackBase.plugins.bundleAnalyzer
     ],
     devServer: webpackBase.devServer,
     watchOptions: webpackBase.watchOptions
