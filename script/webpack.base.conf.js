@@ -2,7 +2,6 @@ const webpack = require('webpack');
 const path = require('path');
 const tsImportPluginFactory = require('ts-import-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-// const TerserPlugin = require('terser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -27,14 +26,6 @@ module.exports = {
         name: ''
     },
     optimization: {
-        // minimizer: [
-        //     // 压缩js
-        //     new TerserPlugin({
-        //         test: /\.(ts|tsx|js|jsx)$/,
-        //         extractComments: true,
-        //         parallel: true
-        //     })
-        // ],
         splitChunks: { chunks: 'all' }
     },
     resolve: {

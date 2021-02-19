@@ -80,7 +80,6 @@
         "stylelint": "^13.0.0",
         "stylelint-config-prettier": "^8.0.2",
         "stylelint-config-standard": "^19.0.0",
-        "terser-webpack-plugin": "^5.1.1",
         "trtc-js-sdk": "^4.6.3",
         "ts-import-plugin": "^1.6.6",
         "typescript": "^4.0.2",
