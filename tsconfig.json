@@ -18,7 +18,7 @@
         "lib": ["esnext", "dom", "dom.iterable"],
         "skipLibCheck": true,
         "jsx": "react",
-        "typeRoots": ["node", "node_modules/@types"],
+        "typeRoots": ["node", "node_modules/@types", "./typings"],
         "rootDirs": ["./src"],
         "baseUrl": "./src",
         "paths": {
