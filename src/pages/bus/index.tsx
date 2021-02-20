@@ -6,11 +6,7 @@ class Bus extends Component {
     }
 
     render() {
-        return (
-            <section>
-                二级路由
-            </section>
-        );
+        return <section>二级路由</section>;
     }
 }
 

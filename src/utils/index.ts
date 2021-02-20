@@ -8,7 +8,7 @@ export function deleteCookie() {
 
 // 日志记录
 export function logger(level: string, msg: any) {
-    switch(level) {
+    switch (level) {
         case 'error':
             console.error(new Date(), JSON.stringify(msg));
             break;
@@ -26,7 +26,7 @@ export function getCookie() {
     const cookies = document.cookie.split(';');
     let cookie: any;
     cookies.forEach(item => {
-        if(item.split('=')[0].trim() == 'token') {
+        if (item.split('=')[0].trim() == 'token') {
             cookie = item.split('=')[1];
         }
     });
@@ -36,11 +36,12 @@ export function getCookie() {
 // 校验当前用户是否开启权限
 export function getUserMedia() {
     return new Promise((resolve, reject) => {
-        navigator.mediaDevices.getUserMedia({ audio: true, video: true })
-            .then((stream) => {
+        navigator.mediaDevices
+            .getUserMedia({ audio: true, video: true })
+            .then(stream => {
                 resolve(stream);
             })
-            .catch((err) => {
+            .catch(err => {
                 reject(err);
             });
     });
@@ -48,7 +49,7 @@ export function getUserMedia() {
 
 // 移出流轨道
 export function removeTracks(stream) {
-    stream.getTracks().forEach((track) => {
+    stream.getTracks().forEach(track => {
         track.stop && track.stop();
     });
 }
@@ -60,10 +61,10 @@ export function isFunction(value: any) {
 
 // 把对象转换成url参数
 export function setUrlParams(params: any) {
-    if(Object.prototype.toString.call(params) === '[object Object]') {
+    if (Object.prototype.toString.call(params) === '[object Object]') {
         let str = '';
         Object.keys(params).forEach((item, index) => {
-            if(index == 0) {
+            if (index == 0) {
                 str += `?${item}=${params[item]}`;
             } else {
                 str += `&${item}=${params[item]}`;
@@ -71,7 +72,6 @@ export function setUrlParams(params: any) {
         });
         return str;
     }
-
 }
 
 // 获取数据类型，返回结果为 Number、String、Object、Array等
@@ -81,7 +81,9 @@ export function getRawType(value: any) {
 
 // 检查 value 是否为有效的类数组长度
 export function isLength(value: any) {
-    return typeof value == 'number' && value > -1 && value % 1 == 0 && value <= Number.MAX_SAFE_INTEGER;
+    return (
+        typeof value == 'number' && value > -1 && value % 1 == 0 && value <= Number.MAX_SAFE_INTEGER
+    );
 }
 
 // 检查 value 是否是类数组
@@ -108,13 +110,13 @@ export function formatSeconds(value: number) {
     let theTime1: any = '00';
     // 小时
     let theTime2: any = '00';
-    if(value > 60) {
+    if (value > 60) {
         theTime1 = parseInt((value / 60).toString());
         theTime = parseInt((value % 60).toString());
-        if(theTime1 > 60) {
+        if (theTime1 > 60) {
             theTime2 = parseInt((theTime1 / 60).toString());
             theTime1 = parseInt((theTime1 % 60).toString());
-            if(theTime2 > 24) {
+            if (theTime2 > 24) {
                 theTime2 = parseInt((theTime2 % 24).toString());
             }
         }
@@ -123,8 +125,16 @@ export function formatSeconds(value: number) {
     }
     let result = '';
     result = '' + (parseInt(theTime) >= 10 ? parseInt(theTime) : '0' + parseInt(theTime));
-    result = '' + (parseInt(theTime1) >= 10 ? parseInt(theTime1) : '0' + parseInt(theTime1)) + ':' + result;
-    result = '' + (parseInt(theTime2) > 10 ? parseInt(theTime2) : '0' + parseInt(theTime2)) + ':' + result;
+    result =
+        '' +
+        (parseInt(theTime1) >= 10 ? parseInt(theTime1) : '0' + parseInt(theTime1)) +
+        ':' +
+        result;
+    result =
+        '' +
+        (parseInt(theTime2) > 10 ? parseInt(theTime2) : '0' + parseInt(theTime2)) +
+        ':' +
+        result;
     return result;
 }
 
@@ -159,15 +169,15 @@ export function isEmpty(value: any) {
  * @param {*} hasMessage
  * @param {*} isAll
  */
-export function isResultError (params: any, hasMessage: boolean = true, isAll: boolean = false) {
+export function isResultError(params: any, hasMessage: boolean = true, isAll: boolean = false) {
     if (!isEmpty(params) && params.errCode == 0) {
-        if(isAll) return params;
+        if (isAll) return params;
         return params.result;
     }
 
     if (!isEmpty(params) && params.errCode != 0) {
-        if(hasMessage) message.error(params.errInfo);
-        if(isAll) return params;
+        if (hasMessage) message.error(params.errInfo);
+        if (isAll) return params;
         return '';
     }
 }
