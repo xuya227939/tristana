@@ -13,6 +13,7 @@ module.exports = {
         webpackBase.plugins.cleanWebpack,
         webpackBase.plugins.html,
         webpackBase.plugins.miniCssExtract,
+        webpackBase.plugins.esLint,
         webpackBase.plugins.ContextReplacementPlugin,
         webpackBase.plugins.DefinePlugin,
         webpackBase.plugins.AntdDayjsWebpackPlugin,

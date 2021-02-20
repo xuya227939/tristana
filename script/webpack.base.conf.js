@@ -52,17 +52,6 @@ module.exports = {
                 exclude: /node_modules/
             },
             {
-                enforce: 'pre',
-                test: /\.(ts|tsx|js|jsx)$/,
-                exclude: /node_modules/,
-                loader: 'eslint-loader',
-                options: {
-                    cache: true,
-                    emitWarning: true,
-                    failOnError: true
-                }
-            },
-            {
                 test: /\.(js|jsx)$/,
                 loader: 'babel-loader',
                 exclude: /node_modules/
