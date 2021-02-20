@@ -9,6 +9,7 @@ const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 module.exports = {
     stats: {
@@ -138,6 +139,9 @@ module.exports = {
                     ? './css/[id].css'
                     : './css/[id].[contenthash].css',
             ignoreOrder: true
+        }),
+        esLint: new ESLintPlugin({
+            extensions: ['js', 'jsx', 'ts', 'tsx']
         }),
         // 生成包依赖图
         bundleAnalyzer: new BundleAnalyzerPlugin({
