@@ -27,7 +27,7 @@ module.exports = {
         sourceType: 'module',
         ecmaVersion: 6
     },
-    plugins: ['react', 'standard', 'promise', '@typescript-eslint'],
+    plugins: ['react', 'promise', '@typescript-eslint'],
     settings: {
         'import/ignore': ['node_modules'],
         react: {

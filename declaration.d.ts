@@ -20,6 +20,6 @@ declare module '*.css' {
 }
 
 // 定义window变量
-interface Window{
-    r: string[]
+interface Window {
+    r: string[];
 }

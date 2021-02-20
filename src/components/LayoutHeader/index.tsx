@@ -7,7 +7,7 @@ import Event from '@utils/event';
 import './index.less';
 
 interface IProps {
-    history: any
+    history: any;
 }
 
 interface IState {
@@ -30,7 +30,7 @@ class Index extends Component<IProps, IState> {
     changeIntl = () => {
         Event.emit('changeLanguage', this.state.lang == 'zh_CN' ? 'en_US' : 'zh_CN');
         this.setState({ lang: this.state.lang == 'zh_CN' ? 'en_US' : 'zh_CN' });
-    }
+    };
 
     render() {
         const menu = (
@@ -44,11 +44,11 @@ class Index extends Component<IProps, IState> {
         );
         return (
             <section className="layoutHeader">
-                <div className="headeLeft">
-                    {intl.get('ORDER-SYSTEM')}
-                </div>
+                <div className="headeLeft">{intl.get('ORDER-SYSTEM')}</div>
                 <div className="headerRight">
-                    <Tag className="intl" onClick={this.changeIntl}>{this.state.lang == 'zh_CN' ? '中文' : 'English'}</Tag>
+                    <Tag className="intl" onClick={this.changeIntl}>
+                        {this.state.lang == 'zh_CN' ? '中文' : 'English'}
+                    </Tag>
                     <span className="message">{intl.get('MESSAGE')}</span>
                     <Dropdown className="dropDown" overlay={menu}>
                         <div>

@@ -20,8 +20,8 @@ const history = createHashHistory();
 configure({ enforceActions: 'observed' });
 
 const locales = {
-    'en_US': require('@locales/en_US.json'),
-    'zh_CN': require('@locales/zh_CN.json')
+    en_US: require('@locales/en_US.json'),
+    zh_CN: require('@locales/zh_CN.json')
 };
 
 // if (module.hot) {
@@ -30,16 +30,13 @@ const locales = {
 
 Sentry.init({ dsn: 'https://11f12914dc114782b37d9d94c8839a40@o414598.ingest.sentry.io/5304319' });
 
-interface IProps {
-
-}
+interface IProps {}
 
 interface IState {
     antdLang: string | boolean;
 }
 
 export default class App extends React.Component<IProps, IState> {
-
     constructor(props) {
         super(props);
         this.state = {

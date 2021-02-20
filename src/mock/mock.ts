@@ -1,7 +1,7 @@
 import Mock from 'mockjs';
 
 const getTable = Mock.mock(location.origin + '/api/getTable.json', 'get', {
-    'result': [
+    result: [
         {
             orderId: '61011727',
             customerName: '小红',
@@ -93,6 +93,4 @@ const getTable = Mock.mock(location.origin + '/api/getTable.json', 'get', {
     ]
 });
 
-export {
-    getTable
-};
+export { getTable };

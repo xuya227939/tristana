@@ -3,15 +3,13 @@
  * @Author: Jiang
  * @Date: 2019-06-12 15:21:19
  * @Last Modified by: Jiang
- * @Last Modified time: 2020-07-29 21:04:22
+ * @Last Modified time: 2021-02-20 10:49:28
  */
 import React from 'react';
 import { Result, Button } from 'antd';
 import * as Sentry from '@sentry/react';
 
-interface IProps {
-
-}
+interface IProps {}
 
 interface IState {
     hasError: Boolean;
@@ -35,7 +33,7 @@ class ErrorBoundary extends React.Component<IProps, IState> {
             info: error + ''
         });
         const userId = Math.random().toString(36).substr(2, 9);
-        Sentry.withScope((scope) => {
+        Sentry.withScope(scope => {
             scope.setExtras(info.componentStack);
             scope.setUser({
                 id: userId,
@@ -56,7 +54,14 @@ class ErrorBoundary extends React.Component<IProps, IState> {
                     status="500"
                     title="500"
                     subTitle={this.state.info}
-                    extra={<Button type="primary" onClick={() => Sentry.showReportDialog({ eventId: this.state.eventId })}>Report feedback</Button>}
+                    extra={
+                        <Button
+                            type="primary"
+                            onClick={() => Sentry.showReportDialog({ eventId: this.state.eventId })}
+                        >
+                            Report feedback
+                        </Button>
+                    }
                 />
             );
         }

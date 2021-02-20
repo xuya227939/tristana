@@ -4,7 +4,7 @@
  * @Author: Jiang
  * @Date: 2019-08-27 18:00:15
  * @Last Modified by: Jiang
- * @Last Modified time: 2020-07-29 21:04:10
+ * @Last Modified time: 2021-02-20 10:49:47
  */
 
 // import io from 'socket.io-client';
@@ -13,7 +13,7 @@ let SOCKET: any = '';
 
 // 服务器断开链接
 const serverDisconnect = () => {
-    if(!SOCKET) {
+    if (!SOCKET) {
         return;
     }
     SOCKET.on('disconnect');
@@ -21,29 +21,29 @@ const serverDisconnect = () => {
 
 // 断开链接
 const disconnect = () => {
-    if(!SOCKET) {
+    if (!SOCKET) {
         return;
     }
     SOCKET.disconnect();
 };
 
 const offConnect = () => {
-    if(!SOCKET) {
+    if (!SOCKET) {
         return;
     }
     SOCKET.off('connect');
 };
 
 const onConnect = () => {
-    if(!SOCKET) {
+    if (!SOCKET) {
         return;
     }
-    SOCKET.on('connect', () => { });
+    SOCKET.on('connect', () => {});
 };
 
 // 移出所有监听
 const removeAllListeners = () => {
-    if(!SOCKET) {
+    if (!SOCKET) {
         return;
     }
     SOCKET.removeAllListeners();
@@ -56,11 +56,4 @@ const close = () => {
     removeAllListeners();
 };
 
-export {
-    disconnect,
-    serverDisconnect,
-    offConnect,
-    onConnect,
-    removeAllListeners,
-    close
-};
+export { disconnect, serverDisconnect, offConnect, onConnect, removeAllListeners, close };

@@ -19,7 +19,10 @@ function Dashboard() {
     // const routeConfig = this.props.routes.map((route, i) => <RouteWithSubRoutes key={i} {...route} />);
     return (
         <section className="dashboard">
-            <OrderTable list={dashboardStore.list} isLoading={dashboardStore.isLoading.get('getTable')} />
+            <OrderTable
+                list={dashboardStore.list}
+                isLoading={dashboardStore.isLoading.get('getTable')}
+            />
             {/* <Button onClick={() => this.props.history.push('/dashboard/bus')}>二级路由</Button> */}
             {/* <Switch>
                 {routeConfig}
@@ -33,7 +36,7 @@ export default observer(Dashboard);
 // 表格列配置
 const columns = [
     {
-        title: '订单编号',
+        title: '订单编号444',
         dataIndex: 'orderId'
     },
     {
@@ -60,12 +63,5 @@ const columns = [
 
 // 订单表格
 function OrderTable({ list, isLoading }) {
-    return (
-        <Table
-            columns={columns}
-            dataSource={list || []}
-            loading={isLoading}
-            rowKey="orderId"
-        />
-    );
+    return <Table columns={columns} dataSource={list || []} loading={isLoading} rowKey="orderId" />;
 }

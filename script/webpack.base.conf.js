@@ -1,46 +1,34 @@
 const webpack = require('webpack');
 const path = require('path');
-const tsImportPluginFactory = require('ts-import-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
-const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
-const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 module.exports = {
     stats: {
         entrypoints: false,
         children: false
     },
+    cache: {
+        type: 'filesystem',
+        // 可选配置
+        buildDependencies: {
+            // eslint-disable-next-line no-undef
+            config: [__filename] // 当构建依赖的config文件（通过 require 依赖）内容发生变化时，缓存失效
+        },
+        name: ''
+    },
     optimization: {
-        minimizer: [
-            // 压缩js
-            new TerserPlugin({
-                test: /\.(ts|tsx|js|jsx)$/,
-                extractComments: true,
-                parallel: true,
-                cache: true
-            })
-        ],
-        splitChunks: {
-            cacheGroups: {
-                vendors: {
-                    //node_modules里的代码
-                    test: /[\\/]node_modules[\\/]/,
-                    chunks: 'initial',
-                    name: 'vendors', //chunks name
-                    priority: 10, //优先级
-                    enforce: true
-                }
-            }
-        }
+        minimize: true,
+        minimizer: [new CssMinimizerPlugin()],
+        splitChunks: { chunks: 'all' }
     },
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.jsx', '.css', '.less', '.json'],
@@ -60,44 +48,13 @@ module.exports = {
         rules: [
             {
                 test: /\.(tsx|ts)?$/,
-                exclude: /node_modules/,
-                loader: 'awesome-typescript-loader',
-                options: {
-                    getCustomTransformers: () => ({
-                        before: [
-                            tsImportPluginFactory([
-                                {
-                                    libraryName: 'antd',
-                                    libraryDirectory: 'lib',
-                                    style: 'css'
-                                }
-                            ])
-                        ]
-                    })
-                }
-            },
-            {
-                enforce: 'pre',
-                test: /\.(ts|tsx|js|jsx)$/,
-                exclude: /node_modules/,
-                loader: 'eslint-loader',
-                options: {
-                    cache: true,
-                    emitWarning: true,
-                    failOnError: true
-                }
+                loader: 'babel-loader',
+                exclude: /node_modules/
             },
             {
                 test: /\.(js|jsx)$/,
-                // loader: 'babel-loader',
-                exclude: /node_modules/,
-                loader: require.resolve('babel-loader'),
-                options: {
-                    plugins: [
-                        process.env.ENV_LWD == 'development' &&
-                            require.resolve('react-refresh/babel')
-                    ].filter(Boolean)
-                }
+                loader: 'babel-loader',
+                exclude: /node_modules/
             },
             {
                 test: /\.(css|less)$/,
@@ -116,13 +73,15 @@ module.exports = {
                     {
                         loader: 'less-loader',
                         options: {
-                            javascriptEnabled: true
+                            lessOptions: {
+                                javascriptEnabled: true
+                            }
                         }
                     }
                 ]
             },
             {
-                test: /\.(png|svg|jpg|gif|jpeg)$/,
+                test: /\.(png|jpg|gif|jpeg)$/,
                 loader: 'file-loader',
                 options: {
                     outputPath: './assets/images',
@@ -131,11 +90,12 @@ module.exports = {
                 }
             },
             {
-                test: /\.(woff|woff2|eot|ttf|otf|mp3)$/,
-                loader: 'file-loader',
-                options: {
-                    esModule: false
-                }
+                test: /\.(woff|woff2|eot|ttf|otf|svg)$/,
+                // loader: 'file-loader',
+                // options: {
+                //     esModule: false
+                // }
+                type: 'asset/inline'
             }
         ]
     },
@@ -160,14 +120,18 @@ module.exports = {
         // 抽取css
         miniCssExtract: new MiniCssExtractPlugin({
             filename:
-                process.env.ENV_LWD == 'development' ? './css/[id].css' : './css/[id].[hash].css',
+                process.env.ENV_LWD == 'development'
+                    ? './css/[name].css'
+                    : './css/[name].[contenthash].css',
             chunkFilename:
-                process.env.ENV_LWD == 'development' ? './css/[id].css' : './css/[id].[hash].css',
+                process.env.ENV_LWD == 'development'
+                    ? './css/[id].css'
+                    : './css/[id].[contenthash].css',
             ignoreOrder: true
         }),
-        namedModules: new webpack.NamedModulesPlugin(),
-        // 压缩css
-        optimizeCssAssets: new OptimizeCssAssetsPlugin(),
+        esLint: new ESLintPlugin({
+            extensions: ['js', 'jsx', 'ts', 'tsx']
+        }),
         // 生成包依赖图
         bundleAnalyzer: new BundleAnalyzerPlugin({
             analyzerPort: 8081
@@ -179,25 +143,25 @@ module.exports = {
         CompressionPlugin: new CompressionPlugin({
             filename: '[path].gz[query]',
             algorithm: 'gzip',
-            test: /\.js$|\.css$|\.jsx$|\.less$|\.html$/,
-            threshold: 10240,
-            minRatio: 0.8
+            test: /\.ts$|\.tsx$|\.js$|\.jsx$|\.css$|\.less$|\.html$/,
+            threshold: 10240
         }),
         // 替换ant moment
         AntdDayjsWebpackPlugin: new AntdDayjsWebpackPlugin(),
         DefinePlugin: new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify(process.env.ENV_LWD)
         }),
-        CopyPlugin: new CopyPlugin([
-            {
-                from: './src/assets/js',
-                to: '../dist/assets/js',
-                toType: 'dir'
-            }
-        ]),
-        HotModuleReplacementPlugin: new webpack.HotModuleReplacementPlugin(),
-        ReactRefreshWebpackPlugin: new ReactRefreshWebpackPlugin(),
-        HardSourceWebpackPlugin: new HardSourceWebpackPlugin()
+        CopyPlugin: new CopyPlugin({
+            patterns: [
+                {
+                    from: './src/assets/js',
+                    to: '../dist/assets/js',
+                    toType: 'dir',
+                    noErrorOnMissing: true
+                }
+            ]
+        }),
+        HotModuleReplacementPlugin: new webpack.HotModuleReplacementPlugin()
     },
     devServer: {
         contentBase: path.resolve(__dirname, 'dist'),
