@@ -10,8 +10,8 @@ import React from 'react';
 import { inject, observer } from 'mobx-react';
 import { Popconfirm, Spin, Button } from 'antd';
 import TRTC from 'trtc-js-sdk';
-import request from '@src/request';
-import { isEmpty, formatSeconds, logger } from '@src/utils';
+import request from '@/request';
+import { isEmpty, formatSeconds, logger } from '@/utils';
 import './index.less';
 
 interface IProps {

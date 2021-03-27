@@ -9,7 +9,7 @@
 import React, { lazy } from 'react';
 import { Route, withRouter } from 'react-router-dom';
 
-const Error = lazy(() => import(/* webpackChunkName: "Error"*/ '@pages/user/error'));
+const Error = lazy(() => import(/* webpackChunkName: "Error"*/ '/@pages/user/error'));
 
 interface IProps {
     history: {
