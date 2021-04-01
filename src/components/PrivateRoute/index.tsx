@@ -3,13 +3,13 @@
  * @Author: Jiang
  * @Date: 2020-03-11 21:42:00
  * @Last Modified by: Jiang
- * @Last Modified time: 2021-02-20 10:49:43
+ * @Last Modified time: 2021-04-01 17:54:16
  */
 
 import React, { lazy } from 'react';
 import { Route, withRouter } from 'react-router-dom';
 
-const Error = lazy(() => import(/* webpackChunkName: "Error"*/ '/@pages/user/error'));
+const Error = lazy(() => import(/* webpackChunkName: "Error"*/ '@pages/user/error'));
 
 interface IProps {
     history: {
