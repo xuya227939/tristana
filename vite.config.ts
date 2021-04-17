@@ -1,5 +1,7 @@
 import { defineConfig } from 'vite';
 import reactRefresh from '@vitejs/plugin-react-refresh';
+import vitePluginImp from 'vite-plugin-imp';
+
 const path = require('path');
 export default defineConfig({
     resolve: {
@@ -15,5 +17,23 @@ export default defineConfig({
             '@mock': path.resolve(__dirname, 'src/mock')
         }
     },
-    plugins: [reactRefresh()]
+    plugins: [
+        reactRefresh(),
+        vitePluginImp({
+            libList: [
+                {
+                    libName: 'antd',
+                    libDirectory: 'es',
+                    style: name => `antd/es/${name}/style`
+                }
+            ]
+        })
+    ],
+    css: {
+        preprocessorOptions: {
+            less: {
+                javascriptEnabled: true
+            }
+        }
+    }
 });

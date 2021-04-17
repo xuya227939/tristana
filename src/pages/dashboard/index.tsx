@@ -1,6 +1,6 @@
 import React from 'react';
 // import { Button } from 'antd';
-import { useRootStore } from '/@mobx/useRootStore';
+import { useRootStore } from '@mobx/useRootStore';
 import { observer } from 'mobx-react';
 // import { Switch } from 'react-router-dom';
 // import PrivateRoute from '@components/PrivateRoute';
