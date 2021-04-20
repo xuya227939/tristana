@@ -1,12 +1,12 @@
 # Tristana（Vite）
 
-Lightweight front-end template based on [React](https://github.com/facebook/react)、[Mobx](https://github.com/mobxjs/mobx)、[Webpack](https://github.com/webpack/webpack) and [React-Router](https://github.com/ReactTraining/react-router)
+Lightweight front-end template based on [React](https://github.com/facebook/react)、[Mobx](https://github.com/mobxjs/mobx)、[Vite](https://github.com/vitejs/vite) and [React-Router](https://github.com/ReactTraining/react-router)
 
 ---
 
 ## Features
 
--   **Get started quickly**，As long as you know react, mobx, webpack and react router, you can quickly build the management platform of the middle and back office.
+-   **Get started quickly**，As long as you know react, mobx, vite and react router, you can quickly build the management platform of the middle and back office.
 -   **Route matching**，Including URL input, JS jump, menu switch.
 -   **Loading**，Do not need to write component load judgment repeatedly.
 
