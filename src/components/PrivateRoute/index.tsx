@@ -33,15 +33,14 @@ class PrivateRoute extends React.Component<IProps, IState> {
     }
 
     componentDidMount() {
-        let isAuthenticated = localStorage.token ? true : false;
-        this.setState({ isAuthenticated });
-
-        if (!isAuthenticated) {
-            const { history } = this.props;
-            setTimeout(() => {
-                history.replace('/user/login');
-            }, 1000);
-        }
+        // let isAuthenticated = localStorage.token ? true : false;
+        // this.setState({ isAuthenticated });
+        // if (!isAuthenticated) {
+        //     const { history } = this.props;
+        //     setTimeout(() => {
+        //         history.replace('/user/login');
+        //     }, 1000);
+        // }
     }
 
     render() {
