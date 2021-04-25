@@ -3,12 +3,13 @@
  * @Author: Jiang
  * @Date: 2019-06-13 16:45:59
  * @Last Modified by: Jiang
- * @Last Modified time: 2021-02-20 10:48:10
+ * @Last Modified time: 2021-04-17 15:56:06
  */
 
 import React, { Component } from 'react';
 import { Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import 'antd/lib/style/index.css';
 import './login.less';
 
 interface IProps {

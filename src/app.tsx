@@ -9,10 +9,12 @@ import en_US from 'antd/lib/locale-provider/en_US';
 import { Switch, Router, Route } from 'react-router-dom';
 import { createHashHistory } from 'history';
 import ErrorBoundary from '@components/ErrorBoundary/index';
-import Home from '@src/pages/home/index';
-import Login from '@src/pages/user/login';
+import Home from '@pages/home/index';
+import Login from '@pages/user/login';
 import Event from '@utils/event';
 import '@mock/mock.ts';
+import enUSJSON from '@locales/en_US.json';
+import znCNJSON from '@locales/zh_CN.json';
 import './styles/index.less';
 
 const history = createHashHistory();
@@ -20,13 +22,12 @@ const history = createHashHistory();
 configure({ enforceActions: 'observed' });
 
 const locales = {
-    en_US: require('@locales/en_US.json'),
-    zh_CN: require('@locales/zh_CN.json')
+    // error：vite require is nodefined
+    // en_US: require('@locales/en_US.json'),
+    // zh_CN: require('@locales/zh_CN.json')
+    en_US: enUSJSON,
+    zh_CN: znCNJSON
 };
-
-// if (module.hot) {
-//     module.hot.accept();
-// }
 
 Sentry.init({ dsn: 'https://11f12914dc114782b37d9d94c8839a40@o414598.ingest.sentry.io/5304319' });
 

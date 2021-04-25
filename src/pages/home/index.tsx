@@ -5,7 +5,7 @@ import { createHashHistory } from 'history';
 import { onConnect, removeAllListeners, disconnect } from '@components/Socket/index';
 import LayoutHeader from '@components/LayoutHeader/index';
 import Menu from './components/menu';
-import routeConfig from '@src/routeConfig';
+import routeConfig from '@/routeConfig';
 import './index.less';
 
 const { Header, Content, Sider } = Layout;
@@ -52,7 +52,7 @@ class Index extends Component {
                             >
                                 <Switch>
                                     {routeConfig}
-                                    <Redirect from="/*" to="/user/login" />
+                                    <Redirect from="/*" to="/dashboard" />
                                 </Switch>
                             </Suspense>
                         </Content>

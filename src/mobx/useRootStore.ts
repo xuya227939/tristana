@@ -1,5 +1,5 @@
 import React from 'react';
-import * as rootStore from '@src/mobx/rootStore';
+import * as rootStore from '@/mobx/rootStore';
 
 const storeContext = React.createContext<IStore>({ ...rootStore });
 

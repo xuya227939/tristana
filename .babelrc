@@ -23,14 +23,6 @@
         ["@babel/plugin-transform-runtime"],
         ["@babel/plugin-syntax-import-meta"],
         ["@babel/plugin-syntax-dynamic-import"],
-        ["@babel/plugin-proposal-json-strings"],
-        [
-            "import",
-            {
-                "libraryName": "antd",
-                "libraryDirectory": "es",
-                "style": true
-            }
-        ]
+        ["@babel/plugin-proposal-json-strings"]
     ]
 }

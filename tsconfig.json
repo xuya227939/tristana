@@ -8,6 +8,8 @@
         "forceConsistentCasingInFileNames": true,
         "allowJs": true,
         "outDir": "./dist/",
+        "types": ["vite/client", "node"],
+        "resolveJsonModule": true,
         "esModuleInterop": true,
         "noImplicitAny": false,
         "sourceMap": true,
@@ -22,7 +24,7 @@
         "rootDirs": ["./src"],
         "baseUrl": "./src",
         "paths": {
-            "@src/*": ["*"],
+            "@/*": ["*"],
             "@assets/*": ["assets/*"],
             "@components/*": ["components/*"],
             "@locales/*": ["locales/*"],

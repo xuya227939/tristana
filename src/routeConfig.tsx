@@ -2,13 +2,11 @@
 import React, { lazy } from 'react';
 import PrivateRoute from '@components/PrivateRoute/index';
 
-const Dashboard = lazy(
-    () => import(/* webpackChunkName: "Dashboard"*/ '@src/pages/dashboard/index')
-);
-const Bus = lazy(() => import(/* webpackChunkName: "Bus"*/ '@src/pages/bus/index'));
-const AddGoods = lazy(() => import(/* webpackChunkName: "AddGoods"*/ '@src/pages/addGoods/index'));
-const Login = lazy(() => import(/* webpackChunkName: "Login"*/ '@src/pages/user/login'));
-const Error = lazy(() => import(/* webpackChunkName: "Error"*/ '@src/pages/user/error'));
+const Dashboard = lazy(() => import(/* webpackChunkName: "Dashboard"*/ '@/pages/dashboard/index'));
+const Bus = lazy(() => import(/* webpackChunkName: "Bus"*/ '@/pages/bus/index'));
+const AddGoods = lazy(() => import(/* webpackChunkName: "AddGoods"*/ '@/pages/addGoods/index'));
+const Login = lazy(() => import(/* webpackChunkName: "Login"*/ '@/pages/user/login'));
+const Error = lazy(() => import(/* webpackChunkName: "Error"*/ '@/pages/user/error'));
 
 const routes = [
     {

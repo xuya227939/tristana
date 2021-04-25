@@ -1,4 +1,4 @@
-import request from '@src/request';
+import request from '@/request';
 
 // 获取表格数据
 export function getTable() {
