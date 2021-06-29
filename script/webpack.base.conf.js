@@ -86,7 +86,8 @@ module.exports = {
                 options: {
                     outputPath: './assets/images',
                     publicPath: '../assets/images/',
-                    esModule: false
+                    esModule: false,
+                    name: '[name].[ext]?v=' + new Date().getTime()
                 }
             },
             {
@@ -122,11 +123,11 @@ module.exports = {
             filename:
                 process.env.ENV_LWD == 'development'
                     ? './css/[name].css'
-                    : './css/[name].[contenthash].css',
+                    : './css/[name].css?v=' + new Date().getTime(),
             chunkFilename:
                 process.env.ENV_LWD == 'development'
                     ? './css/[id].css'
-                    : './css/[id].[contenthash].css',
+                    : './css/[id].css?v=' + new Date().getTime(),
             ignoreOrder: true
         }),
         esLint: new ESLintPlugin({
