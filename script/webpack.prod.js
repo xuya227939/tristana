@@ -10,7 +10,7 @@ const config = {
         app: ['./src/index.jsx']
     },
     output: {
-        filename: './js/[name].[hash].js',
+        filename: './js/[name].js?v=' + new Date().getTime(),
         hashDigestLength: 7,
         path: path.resolve('./', 'dist'),
         publicPath: './'
