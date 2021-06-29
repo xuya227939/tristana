@@ -5,7 +5,7 @@ const config = {
     // 配置源码显示方式
     mode: 'production',
     output: {
-        filename: './js/[name].[hash].js',
+        filename: './js/[name].js?v=' + new Date().getTime(),
         hashDigestLength: 7,
         path: path.resolve('./', 'dist'),
         publicPath: ''
