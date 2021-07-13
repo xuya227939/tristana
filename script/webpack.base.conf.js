@@ -199,7 +199,10 @@ module.exports = {
         ]),
         HotModuleReplacementPlugin: new webpack.HotModuleReplacementPlugin(),
         ReactRefreshWebpackPlugin: new ReactRefreshWebpackPlugin(),
-        HardSourceWebpackPlugin: new HardSourceWebpackPlugin()
+        HardSourceWebpackPlugin: new HardSourceWebpackPlugin(),
+        providePlugin: new webpack.ProvidePlugin({
+            React: 'React'
+        })
     },
     devServer: {
         contentBase: path.resolve(__dirname, 'dist'),
