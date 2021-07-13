@@ -162,7 +162,10 @@ module.exports = {
                 }
             ]
         }),
-        HotModuleReplacementPlugin: new webpack.HotModuleReplacementPlugin()
+        HotModuleReplacementPlugin: new webpack.HotModuleReplacementPlugin(),
+        providePlugin: new webpack.ProvidePlugin({
+            React: 'React'
+        })
     },
     devServer: {
         contentBase: path.resolve(__dirname, 'dist'),
