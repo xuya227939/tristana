@@ -13,24 +13,16 @@
                 "corejs": 3
             }
         ],
-        [
-            "@babel/preset-react"
-        ]
+        ["@babel/preset-react"]
     ],
     "plugins": [
         ["@babel/plugin-proposal-optional-chaining"],
         ["@babel/plugin-proposal-decorators", { "legacy": true }],
         ["@babel/plugin-proposal-class-properties", { "loose": true }],
+        ["@babel/plugin-proposal-private-methods", { "loose": true }],
         ["@babel/plugin-transform-runtime"],
         ["@babel/plugin-syntax-import-meta"],
         ["@babel/plugin-syntax-dynamic-import"],
-        ["@babel/plugin-proposal-json-strings"],
-        [
-            "import", {
-                "libraryName": "antd",
-                "libraryDirectory": "es",
-                "style": true
-            }
-        ]
+        ["@babel/plugin-proposal-json-strings"]
     ]
 }

@@ -8,7 +8,9 @@ module.exports = {
         '**/*.jpeg',
         '**/*.gif',
         '**/*.mp3',
-        '**/*.json'
+        '**/*.json',
+        '**/*.txt',
+        './src/assets/whiteboard/**'
     ],
     rules: {
         'at-rule-no-unknown': [
