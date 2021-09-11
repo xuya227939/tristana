@@ -6,7 +6,7 @@
                 "targets": {
                     "edge": "17",
                     "firefox": "60",
-                    "chrome": "67",
+                    "chrome": "53",
                     "safari": "11.1"
                 },
                 "useBuiltIns": "usage",
@@ -20,9 +20,11 @@
         ["@babel/plugin-proposal-decorators", { "legacy": true }],
         ["@babel/plugin-proposal-class-properties", { "loose": true }],
         ["@babel/plugin-proposal-private-methods", { "loose": true }],
+        // ["@babel/plugin-proposal-class-properties", { "loose": true }],
         ["@babel/plugin-transform-runtime"],
         ["@babel/plugin-syntax-import-meta"],
         ["@babel/plugin-syntax-dynamic-import"],
-        ["@babel/plugin-proposal-json-strings"]
+        ["@babel/plugin-proposal-json-strings"],
+        ["import", { "libraryName": "antd", "style": true }]
     ]
 }

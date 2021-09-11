@@ -11,7 +11,6 @@ const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
-const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 
 module.exports = {
     stats: {
@@ -144,9 +143,13 @@ module.exports = {
         // 抽取css
         miniCssExtract: new MiniCssExtractPlugin({
             filename:
-                process.env.ENV_LWD == 'development' ? './css/[id].css' : './css/[id].css?v=' + new Date().getTime(),
+                process.env.ENV_LWD == 'development'
+                    ? './css/[id].css'
+                    : './css/[id].css?v=' + new Date().getTime(),
             chunkFilename:
-                process.env.ENV_LWD == 'development' ? './css/[id].css' : './css/[id].css?v=' + new Date().getTime(),
+                process.env.ENV_LWD == 'development'
+                    ? './css/[id].css'
+                    : './css/[id].css?v=' + new Date().getTime(),
             ignoreOrder: true
         }),
         namedModules: new webpack.NamedModulesPlugin(),
@@ -175,7 +178,6 @@ module.exports = {
         ]),
         HotModuleReplacementPlugin: new webpack.HotModuleReplacementPlugin(),
         ReactRefreshWebpackPlugin: new ReactRefreshWebpackPlugin(),
-        HardSourceWebpackPlugin: new HardSourceWebpackPlugin(),
         providePlugin: new webpack.ProvidePlugin({
             React: 'React'
         })

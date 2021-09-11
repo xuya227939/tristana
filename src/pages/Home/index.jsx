@@ -1,9 +1,5 @@
 import React, { Component, Suspense } from 'react';
-import {
-    Switch,
-    Redirect,
-    Router
-} from 'react-router-dom';
+import { Switch, Redirect, Router } from 'react-router-dom';
 import { Layout, Spin } from 'antd';
 import { createHashHistory } from 'history';
 import { onConnect, removeAllListeners, disconnect } from '@components/Socket/index';
@@ -18,7 +14,7 @@ const history = createHashHistory();
 class Index extends Component {
     constructor(props) {
         super(props);
-        this.state = { };
+        this.state = {};
     }
 
     componentDidMount() {
@@ -47,13 +43,16 @@ class Index extends Component {
                             <LayoutHeader />
                         </Header>
                         <Content className="homeContent">
-                            <Suspense fallback={<section className="page-spin"><Spin /></section>}>
+                            <Suspense
+                                fallback={
+                                    <section className="page-spin">
+                                        <Spin />
+                                    </section>
+                                }
+                            >
                                 <Switch>
                                     {routeConfig}
-                                    <Redirect
-                                        from="/*"
-                                        to="/user/login"
-                                    />
+                                    <Redirect from="/*" to="/user/login" />
                                 </Switch>
                             </Suspense>
                         </Content>

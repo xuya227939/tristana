@@ -11,7 +11,7 @@ import { Switch, Router, Route } from 'react-router-dom';
 import { createHashHistory } from 'history';
 import ErrorBoundary from '@components/ErrorBoundary/index';
 import Home from '@src/pages/Home/index';
-import Login  from '@src/pages/User/login';
+import Login from '@src/pages/User/login';
 import Stores from '@mobx/rootStore';
 import Event from '@utils/event';
 import '@mock/mock.js';
@@ -22,8 +22,8 @@ const history = createHashHistory();
 configure({ enforceActions: 'observed' });
 
 const locales = {
-    'en_US': require('./locales/en_US.json'),
-    'zh_CN': require('./locales/zh_CN.json')
+    en_US: require('./locales/en_US.json'),
+    zh_CN: require('./locales/zh_CN.json')
 };
 
 // if (module.hot) {
@@ -42,7 +42,7 @@ export default class App extends React.Component {
 
     componentDidMount() {
         this.loadLocales();
-        Event.on('changeLanguage', (obj) => {
+        Event.on('changeLanguage', obj => {
             dayjs.locale(obj.args == 'zh_CN' ? 'zh-cn' : 'en-us');
             this.loadLocales(obj.args);
         });
