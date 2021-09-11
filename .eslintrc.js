@@ -1,5 +1,10 @@
 module.exports = {
-    extends: ['eslint:recommended', 'prettier'],
+    extends: [
+        'eslint:recommended',
+        'plugin:react/recommended',
+        'prettier',
+        'prettier/@typescript-eslint'
+    ],
     env: {
         browser: true,
         commonjs: true,
@@ -8,10 +13,9 @@ module.exports = {
     globals: {
         $: true,
         process: true,
-        __dirname: true,
-        moment: true
+        __dirname: true
     },
-    parser: 'babel-eslint',
+    parser: '@typescript-eslint/parser',
     parserOptions: {
         ecmaFeatures: {
             jsx: true,
@@ -20,7 +24,7 @@ module.exports = {
         sourceType: 'module',
         ecmaVersion: 6
     },
-    plugins: ['react', 'standard', 'promise'],
+    plugins: ['react', 'promise', '@typescript-eslint'],
     settings: {
         'import/ignore': ['node_modules'],
         react: {
@@ -90,6 +94,9 @@ module.exports = {
                 children: true
             }
         ],
+        // "indent": ["error", 4, {
+        //     "SwitchCase": 1
+        // }],
         'react/jsx-indent': ['error', 4],
         'react/jsx-key': 2,
         'react/jsx-no-bind': 0,
