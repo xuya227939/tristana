@@ -7,16 +7,12 @@
     "editor.wordWrap": "on",
     // 制表符为4
     "editor.tabSize": 4,
-    // 字体大小
-    "editor.fontSize": 16,
     // 选中糟糕的-
     "editor.wordSeparators": "./\\()\"':,.;<>~!@#$%^&*|+=[]{}`~?",
     // 启用后，将不会显示扩展程序建议的通知。
     "extensions.ignoreRecommendations": true,
     // 关闭默认的js验证，js中使用flow或ts语法会报错，需要关闭
     "javascript.validate.enable": false,
-    "fileheader.Author": "Jiang",
-    "fileheader.LastModifiedBy": "Jiang",
     // 配置vetur项目高亮
     "files.associations": {
         "*.wxml": "xml",
