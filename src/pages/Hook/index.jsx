@@ -1,15 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useCallback, useEffect } from 'react';
+import RefHook from './testRef';
+
+function useStateCallback(initialState) {
+    const [state, setState] = useState(initialState);
+    const cbRef = useRef(null);
+
+    const setStateCallback = useCallback((state, cb) => {
+        cbRef.current = cb;
+        setState(state);
+    }, []);
+
+    useEffect(() => {
+        if (cbRef.current) {
+            cbRef.current(state);
+            cbRef.current = null;
+        }
+    }, state);
+
+    return [state, setStateCallback];
+}
 
 function Hook() {
-    // 声明一个新的叫做 “count” 的 state 变量
-    const [count, setCount] = useState(0);
+    const [activeKey, useActiveKey] = useStateCallback(false);
+    const ref = useRef();
+
+    useEffect(() => {
+        useActiveKey(!activeKey, res => {
+            console.log(
+                '%c 🍶 activeKey: ',
+                'font-size:20px;background-color: #B03734;color:#fff;',
+                res
+            );
+        });
+    }, []);
 
     return (
         <div>
-            <p>You clicked {count} times</p>
-            <button onClick={() => setCount(count + 1)}>
-                Click me
-            </button>
+            <RefHook ref={ref} />
         </div>
     );
 }
