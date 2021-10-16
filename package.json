@@ -13,6 +13,12 @@
     "name": "Jiang",
     "email": "hezhiqianye@gmail.com"
   },
+  "keywords": [
+    "tristana",
+    "tristana-cli",
+    "cli",
+    "脚手架"
+  ],
   "license": "MIT",
   "dependencies": {
     "chalk": "^4.1.2",
