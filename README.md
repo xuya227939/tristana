@@ -2,8 +2,6 @@
 
 <img alt="Logo" align="right" src="https://create-react-app.dev/img/logo.svg" width="20%" />
 
-Tristana with no build configuration.
-
 Tristana works on macOS, Windows, and Linux.<br>
 If something doesn’t work, please [file an issue](https://github.com/xuya227939/tristana/issues/new).
 
@@ -20,7 +18,6 @@ If you've previously installed `tristana` globally via `npm install -g tristana`
 
 ![WechatIMG3310](./WechatIMG3310.jpeg)
 
-No configuration or complicated folder structures, only the files you need to build your app.<br>
 Once the installation is done, you can open your project folder:
 
 ```sh
