@@ -17,9 +17,11 @@
   "dependencies": {
     "chalk": "^4.1.2",
     "commander": "^8.2.0",
+    "download-git-repo": "^3.0.2",
     "figlet": "^1.5.2",
     "fs-extra": "^10.0.0",
+    "handlebars": "^4.7.7",
     "inquirer": "^8.2.0",
-    "ora": "^6.0.1"
+    "ora": "^5.4.1"
   }
 }
