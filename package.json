@@ -1,8 +1,10 @@
 {
-    "name": "tristana",
+    "name": "{{name}}",
     "version": "1.0.0",
     "private": true,
     "main": "index.js",
+    "description": "{{description}}",
+    "author": "{{author}}",
     "dependencies": {
         "@ant-design/icons": "^4.6.4",
         "@sentry/react": "^6.2.0",
