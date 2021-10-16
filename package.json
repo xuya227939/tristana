@@ -49,7 +49,7 @@
         "vite-plugin-imp": "^2.0.8"
     },
     "scripts": {
-        "dev": "vite",
+        "start": "vite",
         "build": "vite build",
         "serve": "vite preview",
         "script-name": "babel-node script.js",
