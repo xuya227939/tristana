@@ -91,7 +91,16 @@
         "webpack-cli": "^3.3.10",
         "webpack-dev-server": "3.10.1"
     },
+    "pipeline": {
+        "build": {
+          "outputs": ["dist/**"]
+        },
+        "lint": {
+          "outputs": []
+        }
+    },
     "scripts": {
+        "lint": "tsc",
         "start": "cross-env ENV_LWD=development DOMAIN=ikandy webpack-dev-server --open --config script/webpack.dev.js",
         "build:test": "cross-env ENV_LWD=test DOMAIN=ikandy webpack --config script/webpack.prod.js",
         "build:prod": "cross-env ENV_LWD=production DOMAIN=ikandy webpack --config script/webpack.prod.js",
@@ -121,6 +130,7 @@
         ]
     },
     "devDependencies": {
+        "turbo": "^1.6.1",
         "babel-plugin-import": "^1.13.3"
     }
 }
