@@ -84,7 +84,7 @@ class TrtcRoom extends React.Component {
             // 用户标识
             this.customerCode = customerCode;
             this.client = TRTC.createClient({
-                mode: 'videoCall',
+                mode: 'rtc',
                 sdkAppId,
                 userId: this.userId,
                 userSig: this.userSig
@@ -190,7 +190,7 @@ class TrtcRoom extends React.Component {
     createShareClient() {
         // 创建用于 屏幕分享的 client
         this.shareClient = TRTC.createClient({
-            mpde: 'videoCall',
+            mode: 'rtc',
             sdkAppId: this.sdkAppId,
             userId: this.shareUserId,
             userSig: this.shareUserSig
