@@ -1,4 +1,4 @@
-const Event = {
+const Event: any = {
     message: [],
     on: function (type, fn) {
         if (typeof this.message[type] === 'undefined') {

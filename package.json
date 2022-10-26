@@ -78,7 +78,16 @@
         "webpack-cli": "^4.3.1",
         "webpack-dev-server": "^3.11.2"
     },
+    "pipeline": {
+        "build": {
+          "outputs": ["dist/**"]
+        },
+        "lint": {
+          "outputs": []
+        }
+    },
     "scripts": {
+        "lint": "tsc",
         "start": "cross-env ENV_LWD=development webpack serve  --mode=development --open --config script/webpack.dev.js",
         "build:test": "cross-env ENV_LWD=test webpack  --mode=development --config script/webpack.prod.js",
         "build:prod": "cross-env ENV_LWD=production webpack --mode=production --config script/webpack.prod.js",
@@ -104,5 +113,8 @@
             "prettier --write",
             "git add"
         ]
+    },
+    "devDependencies": {
+        "turbo": "^1.6.1"
     }
 }
