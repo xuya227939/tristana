@@ -4,7 +4,7 @@
  * @Author: Jiang
  * @Date: 2019-08-27 18:00:15
  * @Last Modified by: Jiang
- * @Last Modified time: 2021-02-20 10:49:52
+ * @Last Modified time: 2022-10-26 11:54:17
  */
 import React from 'react';
 import { inject, observer } from 'mobx-react';
@@ -136,7 +136,7 @@ class TrtcRoom extends React.Component<IProps, IState> {
             // 用户标识
             this.customerCode = customerCode;
             this.client = TRTC.createClient({
-                mode: 'videoCall',
+                mode: 'rtc',
                 sdkAppId,
                 userId: this.userId,
                 userSig: this.userSig
@@ -242,7 +242,7 @@ class TrtcRoom extends React.Component<IProps, IState> {
     createShareClient() {
         // 创建用于 屏幕分享的 client
         this.shareClient = TRTC.createClient({
-            mpde: 'videoCall',
+            mode: 'rtc',
             sdkAppId: this.sdkAppId,
             userId: this.shareUserId,
             userSig: this.shareUserId
