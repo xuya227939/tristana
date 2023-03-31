@@ -1,3 +1,5 @@
+# 更新中
+
 # Tristana（Vite）
 
 一款轻量级的项目框架，基于 [React](https://github.com/facebook/react)、[Mobx](https://github.com/mobxjs/mobx)、[Vite](https://github.com/vitejs/vite) 和 [React-Router](https://github.com/ReactTraining/react-router)
