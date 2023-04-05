@@ -46,7 +46,7 @@ class Index extends Component<IProps, IState> {
             <section className="layoutHeader">
                 <div className="headeLeft">{intl.get('ORDER-SYSTEM')}</div>
                 <div className="headerRight">
-                    <Tag className="intl" onClick={this.changeIntl}>
+                    <Tag className="intl" color="magenta" onClick={this.changeIntl}>
                         {this.state.lang == 'zh_CN' ? '中文' : 'English'}
                     </Tag>
                     <span className="message">{intl.get('MESSAGE')}</span>

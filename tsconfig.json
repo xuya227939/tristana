@@ -15,6 +15,7 @@
         "sourceMap": true,
         "module": "esnext",
         "moduleResolution": "node",
+        "useDefineForClassFields": true,
         "isolatedModules": true,
         "importHelpers": true,
         "lib": ["esnext", "dom", "dom.iterable"],

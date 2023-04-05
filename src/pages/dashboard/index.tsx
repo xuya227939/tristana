@@ -11,6 +11,7 @@ function Dashboard() {
     const { dashboardStore } = useRootStore();
 
     React.useEffect(() => {
+        localStorage.token = 'login';
         dashboardStore.getTable();
     }, []);
 

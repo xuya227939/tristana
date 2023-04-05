@@ -1,11 +1,12 @@
 import React from 'react';
 import * as Sentry from '@sentry/react';
 import { ConfigProvider } from 'antd';
+import 'antd/dist/reset.css';
 import { configure } from 'mobx';
 import intl from 'react-intl-universal';
 import dayjs from 'dayjs';
-import zh_CN from 'antd/lib/locale-provider/zh_CN';
-import en_US from 'antd/lib/locale-provider/en_US';
+import zh_CN from 'antd/locale/zh_CN';
+import en_US from 'antd/locale/en_US';
 import { Switch, Router, Route } from 'react-router-dom';
 import { createHashHistory } from 'history';
 import ErrorBoundary from '@components/ErrorBoundary/index';
@@ -65,7 +66,8 @@ export default class App extends React.Component<IProps, IState> {
             <ConfigProvider locale={this.state.antdLang ? zh_CN : en_US}>
                 <Router history={history}>
                     <Switch>
-                        <Route path="/user/login" exact component={Login} />
+                        {/* exact 用于强制跳转，未授权的用户，访问 login 页面 <Route path="/user/login" exact component={Login} /> */}
+                        <Route path="/user/login" component={Login} />
                         <ErrorBoundary>
                             <Home />
                         </ErrorBoundary>

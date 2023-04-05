@@ -28,7 +28,8 @@ const routes = [
     {
         // 登录页
         path: '/user/login',
-        component: Login
+        component: Login,
+        exact: true
     },
     {
         // 权限或者404页面
@@ -38,7 +39,12 @@ const routes = [
 ];
 
 const RouteWithSubRoutes = route => (
-    <PrivateRoute path={route.path} component={route.component} routes={route.routes} />
+    <PrivateRoute
+        path={route.path}
+        component={route.component}
+        exact={route.exact}
+        routes={route.routes}
+    />
 );
 
 const routeConfig = routes.map((route, i) => <RouteWithSubRoutes key={i} {...route} />);
