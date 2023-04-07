@@ -3,14 +3,15 @@
  * @Author: Jiang
  * @Date: 2019-06-12 15:21:19
  * @Last Modified by: Jiang
- * @Last Modified time: 2023-04-07 21:19:00
+ * @Last Modified time: 2023-04-07 21:26:47
  */
 import React from 'react';
 import { Result, Button } from 'antd';
 import * as Sentry from '@sentry/react';
 
 interface IProps {
-    children?: React.Element;
+    // eslint-disable-next-line no-undef
+    children?: JSX.Element;
 }
 
 interface IState {

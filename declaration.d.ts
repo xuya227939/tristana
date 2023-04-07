@@ -4,6 +4,12 @@ declare module '*.less' {
     export default content;
 }
 
+declare namespace JSX {
+    interface IntrinsicElements {
+        [elemName: string]: any;
+    }
+}
+
 // 定义所有的png文件
 declare module '*.png';
 

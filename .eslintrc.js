@@ -17,7 +17,7 @@ module.exports = {
         moment: true
     },
     parser: '@typescript-eslint/parser',
-    plugins: ['@typescript-eslint', 'react', 'standard', 'promise'],
+    plugins: ['react', 'standard', 'promise'],
     root: true,
     parserOptions: {
         requireConfigFile: false,
