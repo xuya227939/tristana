@@ -2,10 +2,11 @@
 import { RouterStore as _RouterStore } from 'mobx-react-router';
 
 declare global {
-    interface RouterStore extends _RouterStore {}
+    type RouterStore = _RouterStore;
 
     interface IStore {
         routerStore: RouterStore;
+        // eslint-disable-next-line no-undef
         dashboardStore: IDashboardStore.DashboardStore;
     }
 }

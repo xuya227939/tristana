@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /*
  * 私有路由页面
  * @Author: Jiang
  * @Date: 2020-03-11 21:42:00
  * @Last Modified by: Jiang
- * @Last Modified time: 2021-04-01 17:54:16
+ * @Last Modified time: 2023-04-07 23:23:07
  */
 
 import React, { lazy } from 'react';
@@ -12,10 +13,10 @@ import { Route, withRouter } from 'react-router-dom';
 const Error = lazy(() => import(/* webpackChunkName: "Error"*/ '@pages/user/error'));
 
 interface IProps {
-    history: {
-        replace(url: string): void;
-    };
-    routes?(url: string): void;
+    // history: {
+    //     replace(url: string): void;
+    // };
+    routes?(): void;
     path?: string;
     exact?: boolean;
     strict?: boolean;
@@ -44,7 +45,7 @@ class PrivateRoute extends React.Component<IProps, IState> {
     }
 
     render() {
-        let { component: Component, path = '/', exact = false, strict = false } = this.props;
+        const { component: Component, path = '/', exact = false, strict = false } = this.props;
         return this.state.isAuthenticated ? (
             <Route
                 path={path}

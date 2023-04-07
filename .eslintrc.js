@@ -35,6 +35,7 @@ module.exports = {
         }
     },
     rules: {
+        '@typescript-eslint/no-explicit-any': 0,
         quotes: [2, 'single'],
         'no-console': 0,
         'no-debugger': 1,

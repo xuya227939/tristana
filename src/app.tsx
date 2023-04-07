@@ -8,7 +8,7 @@ import dayjs from 'dayjs';
 import zh_CN from 'antd/locale/zh_CN';
 import en_US from 'antd/locale/en_US';
 import { Switch, Router, Route } from 'react-router-dom';
-import { createHashHistory } from 'history';
+import { createBrowserHistory } from 'history';
 import ErrorBoundary from '@components/ErrorBoundary/index';
 import Home from '@pages/home/index';
 import Login from '@pages/user/login';
@@ -18,7 +18,7 @@ import enUSJSON from '@locales/en_US.json';
 import znCNJSON from '@locales/zh_CN.json';
 import './styles/index.less';
 
-const history = createHashHistory();
+const browserHistory = createBrowserHistory();
 
 configure({ enforceActions: 'observed' });
 
@@ -48,7 +48,7 @@ export default class App extends React.Component<IProps, IState> {
         };
     }
 
-    componentDidMount(): any {
+    componentDidMount() {
         this.loadLocales();
         Event.on('changeLanguage', (obj: any) => {
             dayjs.locale(obj.args === 'zh_CN' ? 'zh-cn' : 'en-us');
@@ -66,11 +66,11 @@ export default class App extends React.Component<IProps, IState> {
     render() {
         return (
             <ConfigProvider locale={this.state.antdLang ? zh_CN : en_US}>
-                <Router history={history}>
+                <Router history={browserHistory}>
                     <Switch>
                         {/* exact 用于强制跳转，未授权的用户，访问 login 页面 <Route path="/user/login" exact component={Login} /> */}
                         <Route path="/user/login" component={Login} />
-                        <Sentry.ErrorBoundary fallback={ErrorBoundary} showDialog>
+                        <Sentry.ErrorBoundary fallback={ErrorBoundary}>
                             <Home />
                         </Sentry.ErrorBoundary>
                     </Switch>

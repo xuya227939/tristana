@@ -2,11 +2,15 @@
 import React, { lazy } from 'react';
 import PrivateRoute from '@components/PrivateRoute/index';
 
-const Dashboard = lazy(() => import(/* webpackChunkName: "Dashboard"*/ '@/pages/dashboard/index'));
+const Dashboard = lazy(() => import(/* webpackChunkName: "Dashboard"*/ '@/pages/dashboard'));
 const Bus = lazy(() => import(/* webpackChunkName: "Bus"*/ '@/pages/bus/index'));
-const AddGoods = lazy(() => import(/* webpackChunkName: "AddGoods"*/ '@/pages/addGoods/index'));
+const AddGoods = lazy(() => import(/* webpackChunkName: "AddGoods"*/ '@/pages/addGoods'));
 const Login = lazy(() => import(/* webpackChunkName: "Login"*/ '@/pages/user/login'));
 const Error = lazy(() => import(/* webpackChunkName: "Error"*/ '@/pages/user/error'));
+const RouterTest = lazy(() => import(/* webpackChunkName: "RouterTest"*/ '@/pages/routerTest'));
+const RouterTestDetail = lazy(
+    () => import(/* webpackChunkName: "RouterTestDetail"*/ '@/pages/routerTestDetail')
+);
 
 const routes = [
     {
@@ -21,9 +25,20 @@ const routes = [
         ]
     },
     {
-        // 添加商品页
+        // 表单页
         path: '/add/goods',
         component: AddGoods
+    },
+    {
+        // 路由页
+        path: '/routerTest',
+        component: RouterTest,
+        routes: [
+            {
+                path: '/routerTestDetail',
+                component: RouterTestDetail
+            }
+        ]
     },
     {
         // 登录页

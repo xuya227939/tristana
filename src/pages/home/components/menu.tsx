@@ -6,6 +6,7 @@ import React, { Component } from 'react';
 import { HomeOutlined, ShoppingCartOutlined } from '@ant-design/icons';
 import { withRouter } from 'react-router-dom';
 import { Menu } from 'antd';
+import type { MenuProps } from 'antd';
 
 interface IProps {
     location: any;
@@ -38,7 +39,7 @@ class Index extends Component<IProps, IState> {
     }
 
     static getDerivedStateFromProps(props, state) {
-        if (props.location.pathname != state.pathname) {
+        if (props.location.pathname !== state.pathname) {
             return {
                 pathname: props.location.pathname,
                 selectedKeys: [props.location.pathname]
@@ -49,6 +50,30 @@ class Index extends Component<IProps, IState> {
 
     render() {
         const { selectedKeys } = this.state;
+
+        const items: MenuProps['items'] = [
+            {
+                label: <span>工作台</span>,
+                key: '/dashboard',
+                icon: <HomeOutlined />
+            },
+            {
+                label: <span>表单验证</span>,
+                key: '/add/goods',
+                icon: <ShoppingCartOutlined />
+            },
+            {
+                label: <span>路由</span>,
+                key: '/routerTest',
+                icon: <ShoppingCartOutlined />
+            },
+            {
+                label: <span>404</span>,
+                key: '/user/error',
+                icon: <HomeOutlined />
+            }
+        ];
+
         return (
             <Menu
                 theme="light"
@@ -59,19 +84,8 @@ class Index extends Component<IProps, IState> {
                     this.props.history.push(key);
                     this.setState({ selectedKeys: [key] });
                 }}
-            >
-                <Menu.Item key="/dashboard">
-                    <HomeOutlined />
-                    <span>工作台</span>
-                </Menu.Item>
-                <Menu.Item key="/add/goods">
-                    <ShoppingCartOutlined />
-                    <span>添加商品</span>
-                </Menu.Item>
-                <Menu.Item key="/user/error">
-                    <span>404</span>
-                </Menu.Item>
-            </Menu>
+                items={items}
+            />
         );
     }
 }

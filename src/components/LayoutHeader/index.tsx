@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { UserOutlined } from '@ant-design/icons';
 import { withRouter } from 'react-router-dom';
 import { Avatar, Dropdown, Menu, Tag } from 'antd';
+import type { MenuProps } from 'antd';
 import intl from 'react-intl-universal';
 import Event from '@utils/event';
 import './index.less';
@@ -28,26 +29,29 @@ class Index extends Component<IProps, IState> {
     }
 
     changeIntl = () => {
-        Event.emit('changeLanguage', this.state.lang == 'zh_CN' ? 'en_US' : 'zh_CN');
-        this.setState({ lang: this.state.lang == 'zh_CN' ? 'en_US' : 'zh_CN' });
+        Event.emit('changeLanguage', this.state.lang === 'zh_CN' ? 'en_US' : 'zh_CN');
+        this.setState({ lang: this.state.lang === 'zh_CN' ? 'en_US' : 'zh_CN' });
     };
 
     render() {
-        const menu = (
-            <Menu>
-                <Menu.Item>
-                    <a target="_blank" rel="noopener noreferrer" onClick={this.signOut}>
+        const items: MenuProps['items'] = [
+            {
+                label: (
+                    <a href="null" target="_blank" rel="noopener noreferrer" onClick={this.signOut}>
                         退出
                     </a>
-                </Menu.Item>
-            </Menu>
-        );
+                ),
+                key: 'out'
+            }
+        ];
+
+        const menu = <Menu items={items} />;
         return (
             <section className="layoutHeader">
                 <div className="headeLeft">{intl.get('ORDER-SYSTEM')}</div>
                 <div className="headerRight">
                     <Tag className="intl" color="magenta" onClick={this.changeIntl}>
-                        {this.state.lang == 'zh_CN' ? '中文' : 'English'}
+                        {this.state.lang === 'zh_CN' ? '中文' : 'English'}
                     </Tag>
                     <span className="message">{intl.get('MESSAGE')}</span>
                     <Dropdown className="dropDown" overlay={menu}>
