@@ -3,16 +3,18 @@
  * @Author: Jiang
  * @Date: 2019-06-12 15:21:19
  * @Last Modified by: Jiang
- * @Last Modified time: 2021-02-20 10:49:28
+ * @Last Modified time: 2023-04-07 21:19:00
  */
 import React from 'react';
 import { Result, Button } from 'antd';
 import * as Sentry from '@sentry/react';
 
-interface IProps {}
+interface IProps {
+    children?: React.Element;
+}
 
 interface IState {
-    hasError: Boolean;
+    hasError: boolean;
     info: string;
     eventId: string;
 }

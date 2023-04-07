@@ -1,5 +1,10 @@
 module.exports = {
-    extends: ['eslint:recommended', 'prettier'],
+    extends: [
+        'eslint:recommended',
+        'prettier',
+        'plugin:@typescript-eslint/recommended',
+        'react-app'
+    ],
     env: {
         browser: true,
         commonjs: true,
@@ -11,16 +16,18 @@ module.exports = {
         __dirname: true,
         moment: true
     },
-    parser: 'babel-eslint',
+    parser: '@typescript-eslint/parser',
+    plugins: ['@typescript-eslint', 'react', 'standard', 'promise'],
+    root: true,
     parserOptions: {
+        requireConfigFile: false,
         ecmaFeatures: {
             jsx: true,
-            modules: true
-        },
-        sourceType: 'module',
-        ecmaVersion: 6
+            modules: true,
+            sourceType: 'module',
+            ecmaVersion: 6
+        }
     },
-    plugins: ['react', 'standard', 'promise'],
     settings: {
         'import/ignore': ['node_modules'],
         react: {

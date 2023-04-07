@@ -32,7 +32,9 @@ const locales = {
 
 Sentry.init({ dsn: 'https://11f12914dc114782b37d9d94c8839a40@o414598.ingest.sentry.io/5304319' });
 
-interface IProps {}
+interface IProps {
+    test?: string;
+}
 
 interface IState {
     antdLang: string | boolean;
@@ -46,10 +48,10 @@ export default class App extends React.Component<IProps, IState> {
         };
     }
 
-    componentDidMount() {
+    componentDidMount(): any {
         this.loadLocales();
         Event.on('changeLanguage', (obj: any) => {
-            dayjs.locale(obj.args == 'zh_CN' ? 'zh-cn' : 'en-us');
+            dayjs.locale(obj.args === 'zh_CN' ? 'zh-cn' : 'en-us');
             this.loadLocales(obj.args);
         });
     }
@@ -58,7 +60,7 @@ export default class App extends React.Component<IProps, IState> {
         intl.init({
             currentLocale: lang,
             locales
-        }).then(() => this.setState({ antdLang: lang == 'zh_CN' }));
+        }).then(() => this.setState({ antdLang: lang === 'zh_CN' }));
     }
 
     render() {
@@ -68,9 +70,9 @@ export default class App extends React.Component<IProps, IState> {
                     <Switch>
                         {/* exact 用于强制跳转，未授权的用户，访问 login 页面 <Route path="/user/login" exact component={Login} /> */}
                         <Route path="/user/login" component={Login} />
-                        <ErrorBoundary>
+                        <Sentry.ErrorBoundary fallback={ErrorBoundary} showDialog>
                             <Home />
-                        </ErrorBoundary>
+                        </Sentry.ErrorBoundary>
                     </Switch>
                 </Router>
             </ConfigProvider>
