@@ -51,7 +51,9 @@ class PrivateRoute extends React.Component<IProps, IState> {
                 path={path}
                 exact={exact}
                 strict={strict}
-                render={props => <Component {...props} routes={this.props.routes} />}
+                render={props => {
+                    return <Component {...props} routes={this.props.routes} />;
+                }}
             />
         ) : (
             <Error />

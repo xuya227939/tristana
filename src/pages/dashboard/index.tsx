@@ -13,6 +13,7 @@ function Dashboard() {
     React.useEffect(() => {
         localStorage.token = 'login';
         dashboardStore.getTable();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     // const RouteWithSubRoutes = route => <PrivateRoute path={route.path} component={route.component} routes={route.routes} />;
@@ -37,7 +38,7 @@ export default observer(Dashboard);
 // 表格列配置
 const columns = [
     {
-        title: '订单编号444555666',
+        title: '订单编号',
         dataIndex: 'orderId'
     },
     {

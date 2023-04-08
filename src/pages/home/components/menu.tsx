@@ -3,7 +3,14 @@
  * @Date: 2019-07-18 10:33:21
  */
 import React, { Component } from 'react';
-import { HomeOutlined, ShoppingCartOutlined } from '@ant-design/icons';
+import {
+    HomeOutlined,
+    ShoppingCartOutlined,
+    AreaChartOutlined,
+    ApiOutlined,
+    CloudUploadOutlined,
+    FileTextOutlined
+} from '@ant-design/icons';
 import { withRouter } from 'react-router-dom';
 import { Menu } from 'antd';
 import type { MenuProps } from 'antd';
@@ -65,7 +72,22 @@ class Index extends Component<IProps, IState> {
             {
                 label: <span>路由</span>,
                 key: '/routerTest',
-                icon: <ShoppingCartOutlined />
+                icon: <ApiOutlined />
+            },
+            {
+                label: <span>图表</span>,
+                key: '/charts',
+                icon: <AreaChartOutlined />
+            },
+            {
+                label: <span>拖拽 + 文件上传</span>,
+                key: '/dnd',
+                icon: <CloudUploadOutlined />
+            },
+            {
+                label: <span>富文本编辑</span>,
+                key: '/quill',
+                icon: <FileTextOutlined />
             },
             {
                 label: <span>404</span>,

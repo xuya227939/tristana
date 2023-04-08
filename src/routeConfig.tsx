@@ -11,6 +11,9 @@ const RouterTest = lazy(() => import(/* webpackChunkName: "RouterTest"*/ '@/page
 const RouterTestDetail = lazy(
     () => import(/* webpackChunkName: "RouterTestDetail"*/ '@/pages/routerTestDetail')
 );
+const Charts = lazy(() => import(/* webpackChunkName: "charts"*/ '@/pages/charts'));
+const Dnd = lazy(() => import(/* webpackChunkName: "Dnd"*/ '@/pages/dnd'));
+const Quill = lazy(() => import(/* webpackChunkName: "Quill"*/ '@/pages/quill'));
 
 const routes = [
     {
@@ -30,12 +33,27 @@ const routes = [
         component: AddGoods
     },
     {
+        // 图表页
+        path: '/charts',
+        component: Charts
+    },
+    {
+        // 拖拽页
+        path: '/dnd',
+        component: Dnd
+    },
+    {
+        // 富文本编辑
+        path: '/quill',
+        component: Quill
+    },
+    {
         // 路由页
         path: '/routerTest',
         component: RouterTest,
         routes: [
             {
-                path: '/routerTestDetail',
+                path: '/routerTest/routerTestDetail',
                 component: RouterTestDetail
             }
         ]
