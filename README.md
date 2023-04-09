@@ -1,5 +1,7 @@
 # Tristana
 
+如果觉得不错，请麻烦点个`Star`，非常感谢
+
 <img alt="Logo" align="right" src="https://create-react-app.dev/img/logo.svg" width="20%" />
 
 Tristana 在 macOS、Windows 和 Linux 上工作<br>
