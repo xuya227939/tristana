@@ -47,6 +47,10 @@ cd my-app
 
 您的应用程序已准备好部署
 
+### 联系我
+
+<img src="https://sight-world.oss-cn-hangzhou.aliyuncs.com/images/wechat.jpeg?Expires=1681041596&OSSAccessKeyId=TMP.3KgnjbH2kYrsje5Y463Cb4v5SFCk8zh557S16vaYUx4Wdeff6rmC5VtuuvKLZKXdePfxNQdXLdeiGbRRrArN5Npp4avhxD&Signature=FWTtfztAvH%2F7WLXyKhSjN2mmbCE%3D" width="400">
+
 ## License
 
 [MIT](https://tldrlegal.com/license/mit-license)
