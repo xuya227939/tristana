@@ -2,7 +2,7 @@
 
 <img alt="Logo" align="right" src="https://create-react-app.dev/img/logo.svg" width="20%" />
 
-Tristana在macOS、Windows和Linux上工作<br>
+Tristana 在 macOS、Windows 和 Linux 上工作<br>
 如果出现问题，请[提交问题](https://github.com/xuya227939/tristana/issues/new)
 
 ## 快速开始
@@ -12,7 +12,7 @@ npm install -g tristana
 tristana init my-app
 ```
 
-如果您以前通过npm install-g tristana全局安装过tristana，我们建议您使用npm uninstall-g tristana或yarn global remove tristana卸载该软件包，以确保npx始终使用最新版本
+如果您以前通过 npm install-g tristana 全局安装过 tristana，我们建议您使用 npm uninstall-g tristana 或 yarn global remove tristana 卸载该软件包，以确保 npx 始终使用最新版本
 
 ## 目录结构
 
@@ -32,7 +32,7 @@ cd my-app
 打开 [http://localhost:3000](http://localhost:3000/#/dashboard) 以在浏览器中查看
 
 如果您更改代码，页面将自动重新加载 <br>
-您将在控制台中看到构建错误和lint警告
+您将在控制台中看到构建错误和 lint 警告
 
 ### `npm run build` or `yarn build`
 
