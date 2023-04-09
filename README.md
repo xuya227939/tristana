@@ -33,7 +33,7 @@ cd my-app
 ### `npm start` or `yarn start`
 
 以开发模式运行应用程序<br>
-打开 [http://localhost:3000](http://localhost:3000/#/dashboard) 以在浏览器中查看
+打开 [http://localhost:3000/#/dashboard](http://localhost:3000/#/dashboard) 以在浏览器中查看
 
 如果您更改代码，页面将自动重新加载 <br>
 您将在控制台中看到构建错误和 lint 警告
