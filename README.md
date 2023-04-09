@@ -1,8 +1,12 @@
-# Tristana（Hooks）
+# Tristana（Vite）
 
-一款轻量级的项目框架，基于 [React](https://github.com/facebook/react)、[Mobx](https://github.com/mobxjs/mobx)、[Webpack](https://github.com/webpack/webpack) 和 [React-Router](https://github.com/ReactTraining/react-router)
+一款轻量级的项目框架，基于 [React](https://github.com/facebook/react)、[Webpack](https://github.com/webpack/webpack)、[Vite](https://github.com/vitejs/vite) 和 [React-Router](https://github.com/ReactTraining/react-router)
 
 ---
+
+## 页面部分截图
+
+<img alt="1" src="./images/1.png" width="25%" /><img alt="1" src="./images/2.png" width="25%" /><img alt="1" src="./images/3.png" width="25%" /><img alt="1" src="./images/4.png" width="25%" /><img alt="1" src="./images/5.png" width="25%" /><img alt="1" src="./images/6.png" width="25%" />
 
 ## 为何不是？
 
@@ -16,7 +20,7 @@ umi 提供的功能很多，这也导致它太过于臃肿。而且你还要去�
 
 ## 特性
 
--   **快速上手**，只要您了解 `react`、`mobx`、`vite` 和 `react router`，就可以快速搭建中后台管理平台
+-   **快速上手**，只要您了解 `React`、`Mobx`、`Vite` 和 `React Router`，就可以快速搭建中后台管理平台
 -   **路由系统**，基于 `react-router` 实现的路由系统
 -   **Loading**，不需要重复写按钮 `Loading` 判断
 -   **国际化**，基于 `react-intl-universal` 实现的国际化
@@ -25,19 +29,18 @@ umi 提供的功能很多，这也导致它太过于臃肿。而且你还要去�
 -   **UI**，使用业界最著名的 `ant-design`
 -   **代码规范校验**，使用 `eslint`、`lint-staged`、`prettier`、`stylelint`
 -   **模拟请求数据**，基于 `mockjs` 实现
--   **打包工具**，目前最流行的 `webpack`
+-   **打包工具**，目前最火的 `vite`
+-   **持久化缓存**，通过 `localStorage` 实现本地化持久化缓存
 
 ## Demo
 
-页面比较简单，主要是演示用，基于这套项目框架，你可以开发各种各样的页面。
-
-[Tristana](https://order.downfuture.com/)
+[Tristana](https://order.downfuture.com/#/dashboard)
 
 ### 是否可以在生产环境中使用?
 
 当然！预计公司生产环境共有 5+ 个项目
 
-### 支持 IE8 吗?
+### 支持 IE 吗?
 
 不支持
 
@@ -48,18 +51,20 @@ $ git clone https://github.com/xuya227939/tristana.git
 
 $ cd tristana
 
-$ git checkout webpack5
-
 $ npm install
 
-$ npm run start
+$ npm run dev
 ```
 
 ## 部署
 
 ```
-$ npm run build:prod
+$ npm run build
 ```
+
+## 联系我
+
+<img src="https://sight-world.oss-cn-hangzhou.aliyuncs.com/images/wechat.jpeg?Expires=1681041596&OSSAccessKeyId=TMP.3KgnjbH2kYrsje5Y463Cb4v5SFCk8zh557S16vaYUx4Wdeff6rmC5VtuuvKLZKXdePfxNQdXLdeiGbRRrArN5Npp4avhxD&Signature=FWTtfztAvH%2F7WLXyKhSjN2mmbCE%3D" width="400">
 
 ## License
 
