@@ -1,6 +1,6 @@
-# Tristana（Vite）
+# Tristana（Webpack）
 
-一款轻量级的项目框架，基于 [React](https://github.com/facebook/react)、[Webpack](https://github.com/webpack/webpack)、[Vite](https://github.com/vitejs/vite) 和 [React-Router](https://github.com/ReactTraining/react-router)
+一款轻量级的项目框架，基于 [React](https://github.com/facebook/react)、[Webpack](https://github.com/webpack/webpack) 和 [React-Router](https://github.com/ReactTraining/react-router)
 
 ---
 
