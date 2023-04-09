@@ -7,9 +7,9 @@ Tristana 在 macOS、Windows 和 Linux 上工作<br>
 
 ## 页面部分截图
 
-<img alt="1" src="./images/1.png" width="25%" />
+<img alt="1" align="left" src="./images/1.png" width="25%" />
 
-<img alt="1" src="./images/2.png" width="25%" />
+<img alt="1" align="left" src="./images/2.png" width="25%" />
 
 <img alt="1" src="./images/3.png" width="25%" />
 
