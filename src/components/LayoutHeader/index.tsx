@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { UserOutlined } from '@ant-design/icons';
 import { withRouter } from 'react-router-dom';
 import { Avatar, Dropdown, Tag } from 'antd';
 import type { MenuProps } from 'antd';
@@ -45,17 +44,38 @@ class Index extends Component<IProps, IState> {
             }
         ];
 
+        const items2: MenuProps['items'] = [
+            {
+                key: '1',
+                label: '消息1',
+                disabled: true
+            },
+            {
+                key: '2',
+                danger: true,
+                label: '消息2'
+            }
+        ];
+
         return (
             <section className="layoutHeader">
                 <div className="headeLeft">{intl.get('ORDER-SYSTEM')}</div>
                 <div className="headerRight">
-                    <Tag className="intl" color="magenta" onClick={this.changeIntl}>
+                    <Tag className="intl" color="#55acee" onClick={this.changeIntl}>
                         {this.state.lang === 'zh_CN' ? '中文' : 'English'}
                     </Tag>
-                    <span className="message">{intl.get('MESSAGE')}</span>
-                    <Dropdown className="dropDown" menu={{ items }}>
+                    <Dropdown menu={{ items: items2 }} trigger={['click']}>
+                        <span onClick={e => e.preventDefault()} className="message">
+                            {intl.get('MESSAGE')}
+                        </span>
+                    </Dropdown>
+                    <Dropdown className="dropDown" menu={{ items }} trigger={['click']}>
                         <div>
-                            <Avatar className="avatar" size={28} icon={<UserOutlined />} />
+                            <Avatar
+                                src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+                                className="avatar"
+                                size={32}
+                            />
                             <span className="name">{intl.get('MY')}</span>
                         </div>
                     </Dropdown>

@@ -65,7 +65,14 @@ export default class App extends React.Component<IProps, IState> {
 
     render() {
         return (
-            <ConfigProvider locale={this.state.antdLang ? zh_CN : en_US}>
+            <ConfigProvider
+                locale={this.state.antdLang ? zh_CN : en_US}
+                theme={{
+                    token: {
+                        colorPrimary: '#2ec9d7'
+                    }
+                }}
+            >
                 <Router history={browserHistory}>
                     <Switch>
                         {/* exact 用于强制跳转，未授权的用户，访问 login 页面 <Route path="/user/login" exact component={Login} /> */}

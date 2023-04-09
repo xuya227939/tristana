@@ -29,3 +29,5 @@ declare module '*.css' {
 interface Window {
     r: string[];
 }
+
+declare const location: any;

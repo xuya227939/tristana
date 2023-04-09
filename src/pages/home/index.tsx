@@ -33,6 +33,7 @@ class Index extends Component {
                             height: '100vh',
                             left: 0
                         }}
+                        width="250"
                         theme="light"
                     >
                         <div className="logo" />

@@ -7,13 +7,18 @@ import {
     HomeOutlined,
     ShoppingCartOutlined,
     AreaChartOutlined,
-    ApiOutlined,
+    // ApiOutlined,
     CloudUploadOutlined,
-    FileTextOutlined
+    FileTextOutlined,
+    PrinterOutlined,
+    ColumnWidthOutlined,
+    SmileOutlined
 } from '@ant-design/icons';
 import { withRouter } from 'react-router-dom';
 import { Menu } from 'antd';
 import type { MenuProps } from 'antd';
+
+type MenuItem = Required<MenuProps>['items'][number];
 
 interface IProps {
     location: any;
@@ -23,6 +28,22 @@ interface IProps {
 interface IState {
     selectedKeys: any;
     pathname: string;
+}
+
+function getItem(
+    label: React.ReactNode,
+    key: React.Key,
+    icon?: React.ReactNode,
+    children?: MenuItem[],
+    type?: 'group'
+): MenuItem {
+    return {
+        key,
+        icon,
+        children,
+        label,
+        type
+    } as MenuItem;
 }
 
 class Index extends Component<IProps, IState> {
@@ -55,6 +76,10 @@ class Index extends Component<IProps, IState> {
         return state;
     }
 
+    onClick: MenuProps['onClick'] = e => {
+        console.log('click ', e);
+    };
+
     render() {
         const { selectedKeys } = this.state;
 
@@ -69,20 +94,30 @@ class Index extends Component<IProps, IState> {
                 key: '/add/goods',
                 icon: <ShoppingCartOutlined />
             },
+            // {
+            //     label: <span>路由</span>,
+            //     key: '/routerTest',
+            //     icon: <ApiOutlined />
+            // },
+            getItem('图表', 'sub1', <AreaChartOutlined />, [
+                getItem('图表1', '/charts'),
+                getItem('图表2', '/charts2'),
+                getItem('图表3', '/charts3')
+            ]),
             {
-                label: <span>路由</span>,
-                key: '/routerTest',
-                icon: <ApiOutlined />
-            },
-            {
-                label: <span>图表</span>,
-                key: '/charts',
-                icon: <AreaChartOutlined />
-            },
-            {
-                label: <span>拖拽 + 文件上传</span>,
+                label: <span>拖拽</span>,
                 key: '/dnd',
+                icon: <ColumnWidthOutlined />
+            },
+            {
+                label: <span>文件上传</span>,
+                key: '/upload',
                 icon: <CloudUploadOutlined />
+            },
+            {
+                label: <span>水印</span>,
+                key: '/watermark',
+                icon: <PrinterOutlined />
             },
             {
                 label: <span>富文本编辑</span>,
@@ -92,7 +127,7 @@ class Index extends Component<IProps, IState> {
             {
                 label: <span>404</span>,
                 key: '/user/error',
-                icon: <HomeOutlined />
+                icon: <SmileOutlined />
             }
         ];
 

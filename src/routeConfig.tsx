@@ -12,8 +12,12 @@ const RouterTestDetail = lazy(
     () => import(/* webpackChunkName: "RouterTestDetail"*/ '@/pages/routerTestDetail')
 );
 const Charts = lazy(() => import(/* webpackChunkName: "charts"*/ '@/pages/charts'));
+const Charts2 = lazy(() => import(/* webpackChunkName: "charts2"*/ '@/pages/charts2'));
+const Charts3 = lazy(() => import(/* webpackChunkName: "charts3"*/ '@/pages/charts3'));
 const Dnd = lazy(() => import(/* webpackChunkName: "Dnd"*/ '@/pages/dnd'));
+const Upload = lazy(() => import(/* webpackChunkName: "Upload"*/ '@/pages/upload'));
 const Quill = lazy(() => import(/* webpackChunkName: "Quill"*/ '@/pages/quill'));
+const Watermark = lazy(() => import(/* webpackChunkName: "Watermark"*/ '@/pages/watermark'));
 
 const routes = [
     {
@@ -38,9 +42,29 @@ const routes = [
         component: Charts
     },
     {
+        // 图表页
+        path: '/charts2',
+        component: Charts2
+    },
+    {
+        // 图表页
+        path: '/charts3',
+        component: Charts3
+    },
+    {
         // 拖拽页
         path: '/dnd',
         component: Dnd
+    },
+    {
+        // 文件上传
+        path: '/upload',
+        component: Upload
+    },
+    {
+        // 水印
+        path: '/watermark',
+        component: Watermark
     },
     {
         // 富文本编辑

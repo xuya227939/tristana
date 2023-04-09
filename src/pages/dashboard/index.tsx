@@ -42,6 +42,19 @@ const columns = [
         dataIndex: 'orderId'
     },
     {
+        title: '图片',
+        dataIndex: 'image',
+        render: src => (
+            <img
+                width="80"
+                height="80"
+                alt="img"
+                src={src}
+                style={{ borderRadius: 8, objectFit: 'cover' }}
+            />
+        )
+    },
+    {
         title: '客户名称',
         dataIndex: 'customerName'
     },
