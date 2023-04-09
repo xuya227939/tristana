@@ -1,5 +1,7 @@
 # Tristana（Vite）
 
+如果觉得不错，请麻烦点个`Star`，非常感谢
+
 一款轻量级的项目框架，基于 [React](https://github.com/facebook/react)、[Mobx](https://github.com/mobxjs/mobx)、[Vite](https://github.com/vitejs/vite) 和 [React-Router](https://github.com/ReactTraining/react-router)
 
 ---
