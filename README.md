@@ -5,6 +5,20 @@
 Tristana 在 macOS、Windows 和 Linux 上工作<br>
 如果出现问题，请[提交问题](https://github.com/xuya227939/tristana/issues/new)
 
+## 页面部分截图
+
+<img alt="1" src="./images/1.png" width="25%" />
+
+<img alt="1" src="./images/2.png" width="25%" />
+
+<img alt="1" src="./images/3.png" width="25%" />
+
+<img alt="1" src="./images/4.png" width="25%" />
+
+<img alt="1" src="./images/5.png" width="25%" />
+
+<img alt="1" src="./images/6.png" width="25%" />
+
 ## 快速开始
 
 ```sh
@@ -16,7 +30,7 @@ tristana init my-app
 
 ## 目录结构
 
-![WechatIMG3310](./WechatIMG3310.jpeg)
+![7](./images/7.jpeg)
 
 安装完成后，您可以打开项目文件夹：
 
@@ -37,7 +51,7 @@ cd my-app
 ### `npm run build` or `yarn build`
 
 将生产应用程序构建到“构建”文件夹<br>
-它正确地将React捆绑在生产模式中，并优化构建以获得最佳性能
+它正确地将 React 捆绑在生产模式中，并优化构建以获得最佳性能
 
 构建被缩小，文件名包括哈希<br>
 
