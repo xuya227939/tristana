@@ -1,10 +1,12 @@
-# 更新中
-
 # Tristana（Vite）
 
 一款轻量级的项目框架，基于 [React](https://github.com/facebook/react)、[Mobx](https://github.com/mobxjs/mobx)、[Vite](https://github.com/vitejs/vite) 和 [React-Router](https://github.com/ReactTraining/react-router)
 
 ---
+
+## 页面部分截图
+
+<img alt="1" src="./images/1.png" width="25%" /><img alt="1" src="./images/2.png" width="25%" /><img alt="1" src="./images/3.png" width="25%" /><img alt="1" src="./images/4.png" width="25%" /><img alt="1" src="./images/5.png" width="25%" /><img alt="1" src="./images/6.png" width="25%" />
 
 ## 为何不是？
 
@@ -28,18 +30,17 @@ umi 提供的功能很多，这也导致它太过于臃肿。而且你还要去�
 -   **代码规范校验**，使用 `eslint`、`lint-staged`、`prettier`、`stylelint`
 -   **模拟请求数据**，基于 `mockjs` 实现
 -   **打包工具**，目前最火的 `vite`
+-   **持久化缓存**，通过 `localStorage` 实现本地化持久化缓存
 
 ## Demo
 
-页面比较简单，主要是演示用，基于这套项目框架，你可以开发各种各样的页面。
-
-[Tristana](https://order.downfuture.com/)
+[Tristana](https://order.downfuture.com/#/dashboard)
 
 ### 是否可以在生产环境中使用?
 
 当然！预计公司生产环境共有 5+ 个项目
 
-### 支持 IE8 吗?
+### 支持 IE 吗?
 
 不支持
 

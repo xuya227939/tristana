@@ -1,10 +1,10 @@
 {
-    "name": "test",
-    "version": "1.0.0",
+    "name": "{{name}}",
+    "version": "2.0.0",
     "private": true,
     "main": "index.js",
-    "description": "test",
-    "author": "test",
+    "description": "{{description}}",
+    "author": "{{author}}",
     "dependencies": {
         "@ant-design/charts": "^1.4.2",
         "@ant-design/icons": "^5.0.1",
