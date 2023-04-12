@@ -8,7 +8,7 @@ import dayjs from 'dayjs';
 import zh_CN from 'antd/locale/zh_CN';
 import en_US from 'antd/locale/en_US';
 import { Switch, Router, Route } from 'react-router-dom';
-import { createBrowserHistory } from 'history';
+import { createHashHistory } from 'history';
 import ErrorBoundary from '@components/ErrorBoundary/index';
 import Home from '@pages/home/index';
 import Login from '@pages/user/login';
@@ -18,7 +18,7 @@ import enUSJSON from '@locales/en_US.json';
 import znCNJSON from '@locales/zh_CN.json';
 import './styles/index.less';
 
-const browserHistory = createBrowserHistory();
+const hashHistory = createHashHistory();
 
 configure({ enforceActions: 'observed' });
 
@@ -73,7 +73,7 @@ export default class App extends React.Component<IProps, IState> {
                     }
                 }}
             >
-                <Router history={browserHistory}>
+                <Router history={hashHistory}>
                     <Switch>
                         {/* exact 用于强制跳转，未授权的用户，访问 login 页面 <Route path="/user/login" exact component={Login} /> */}
                         <Route path="/user/login" component={Login} />
